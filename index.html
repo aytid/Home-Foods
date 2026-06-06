@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakshatra Pickles & Home Foods | Pure Homestyle Authentic Taste</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nakshatra-cream': '#FDF6E3',
+                        'nakshatra-gold': '#C9A227',
+                        'nakshatra-maroon': '#6B1A1A',
+                        'nakshatra-dark': '#2C1810',
+                        'nakshatra-green': '#1B4D3E',
+                        'nakshatra-orange': '#D4621A',
+                        'nakshatra-warm': '#E8D5B7',
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel Decorative', 'cursive'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FDF6E3;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDF6E3; }
+        ::-webkit-scrollbar-thumb { background: #6B1A1A; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C9A227; }
+
+        /* Traditional Border Pattern */
+        .traditional-border {
+            border: 3px solid #C9A227;
+            position: relative;
+        }
+        .traditional-border::before {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid #6B1A1A;
+            pointer-events: none;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
+        .float-anim-delay { animation: float 5s ease-in-out infinite 1s; }
+        .float-anim-delay2 { animation: float 6s ease-in-out infinite 2s; }
+
+        /* Spice Particle Animation */
+        @keyframes spiceFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+        .spice-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: spiceFloat linear infinite;
+        }
+
+        /* Card Hover Effects */
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(107, 26, 26, 0.25);
+        }
+
+        /* Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.6s;
+        }
+        .btn-shine:hover::after {
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cart Badge Bounce */
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .cart-bounce { animation: bounce 0.3s ease; }
+
+        /* Hero Text Glow */
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(201, 162, 39, 0.6), 0 0 60px rgba(201, 162, 39, 0.2); }
+        }
+        .text-glow { animation: textGlow 3s ease-in-out infinite; }
+
+        /* Pattern Background */
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Decorative Corner */
+        .corner-decor {
+            position: absolute;
+            width: 60px; height: 60px;
+            border: 2px solid #C9A227;
+        }
+        .corner-tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -5px; right: -5px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -5px; left: -5px; border-right: none; border-top: none; }
+        .corner-br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        /* Quantity Selector */
+        .qty-btn {
+            transition: all 0.2s;
+        }
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Loading Spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Sticky Nav Glass */
+        .glass-nav {
+            background: rgba(253, 246, 227, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 60px;
+            background: linear-gradient(135deg, #6B1A1A 25%, transparent 25%) -30px 0,
+                        linear-gradient(225deg, #6B1A1A 25%, transparent 25%) -30px 0,
+                        linear-gradient(315deg, #6B1A1A 25%, transparent 25%),
+                        linear-gradient(45deg, #6B1A1A 25%, transparent 25%);
+            background-size: 60px 60px;
+            background-color: #FDF6E3;
+            opacity: 0.15;
+        }
+
+        /* Price Tag Ribbon */
+        .price-ribbon {
+            position: relative;
+            background: #6B1A1A;
+            color: #FDF6E3;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+        }
+
+        /* Smooth Cart Sidebar */
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cart-sidebar.open { transform: translateX(0); }
+
+        .cart-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Category Tab Active */
+        .cat-tab {
+            position: relative;
+            transition: all 0.3s;
+        }
+        .cat-tab.active {
+            background: #6B1A1A;
+            color: #FDF6E3;
+        }
+        .cat-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #6B1A1A;
+        }
+
+        /* Hero Parallax */
+        .hero-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg { background-attachment: scroll; }
+        }
+
+        /* Toast Notification */
+        .toast {
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .toast.show { transform: translateX(0); }
+
+        /* Image hover zoom */
+        .img-zoom {
+            overflow: hidden;
+        }
+        .img-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-zoom:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="bg-nakshatra-cream text-nakshatra-dark">
+
+    <!-- Floating Spice Particles -->
+    <div id="spiceContainer"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-nakshatra-maroon rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <span class="text-nakshatra-gold font-cinzel font-bold text-lg">N</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-cinzel text-nakshatra-maroon font-bold text-lg leading-tight">Nakshatra</h1>
+                        <p class="text-xs text-nakshatra-gold font-playfair italic">Pickles & Home Foods</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#products" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                        Our Products
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                        About
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                    </a>
+                </div>
+
+                <!-- Cart & Mobile Menu -->
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
+                        <i class="fas fa-shopping-basket text-nakshatra-maroon text-xl"></i>
+                        <span id="cartBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
+                        <i class="fas fa-bars text-nakshatra-maroon text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-nakshatra-cream z-50 shadow-2xl p-6">
+        <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 p-2 hover:bg-nakshatra-maroon/10 rounded-full">
+            <i class="fas fa-times text-nakshatra-maroon text-xl"></i>
+        </button>
+        <div class="mt-12 flex flex-col gap-6">
+            <a href="#home" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Home</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Our Products</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">About Us</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Contact</a>
+        </div>
+        <div class="mt-8 p-4 bg-nakshatra-maroon/5 rounded-lg border border-nakshatra-gold/20">
+            <p class="text-sm text-nakshatra-dark/70"><i class="fas fa-phone-alt text-nakshatra-maroon mr-2"></i>+91 62810 10755</p>
+            <p class="text-sm text-nakshatra-dark/70 mt-2"><i class="fas fa-map-marker-alt text-nakshatra-maroon mr-2"></i>Korutla, Telangana</p>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartOverlay" class="cart-overlay fixed inset-0 bg-black/50 z-50" onclick="toggleCart()"></div>
+    <div id="cartSidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-nakshatra-cream z-50 shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-nakshatra-gold/20 flex items-center justify-between bg-nakshatra-maroon">
+            <h2 class="font-cinzel text-nakshatra-gold text-xl font-bold"><i class="fas fa-shopping-basket mr-2"></i>Your Basket</h2>
+            <button onclick="toggleCart()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <i class="fas fa-times text-nakshatra-cream text-xl"></i>
+            </button>
+        </div>
+        <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <!-- Cart items injected here -->
+        </div>
+        <div id="cartEmpty" class="flex-1 flex flex-col items-center justify-center text-nakshatra-dark/40">
+            <i class="fas fa-basket-shopping text-6xl mb-4"></i>
+            <p class="font-playfair text-lg">Your basket is empty</p>
+            <p class="text-sm mt-1">Add some delicious pickles!</p>
+        </div>
+        <div id="cartFooter" class="p-6 border-t border-nakshatra-gold/20 bg-white/50 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-playfair text-lg">Total Items:</span>
+                <span id="cartTotalItems" class="font-bold text-nakshatra-maroon">0</span>
+            </div>
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-semibold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Order on WhatsApp</span>
+            </button>
+            <button onclick="clearCart()" class="w-full mt-2 text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
+                Clear Basket
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Layers -->
+        <div class="absolute inset-0 bg-gradient-to-br from-nakshatra-maroon/90 via-nakshatra-maroon/70 to-nakshatra-orange/60 z-0"></div>
+        <div class="absolute inset-0 pattern-bg opacity-30 z-0"></div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 border-2 border-nakshatra-gold/20 rounded-full float-anim"></div>
+        <div class="absolute bottom-32 right-16 w-24 h-24 border-2 border-nakshatra-gold/20 rounded-full float-anim-delay"></div>
+        <div class="absolute top-1/3 right-1/4 w-16 h-16 bg-nakshatra-gold/10 rounded-full float-anim-delay2"></div>
+
+        <!-- Corner Decorations -->
+        <div class="absolute top-8 left-8 w-20 h-20 border-t-4 border-l-4 border-nakshatra-gold/40 rounded-tl-3xl"></div>
+        <div class="absolute top-8 right-8 w-20 h-20 border-t-4 border-r-4 border-nakshatra-gold/40 rounded-tr-3xl"></div>
+        <div class="absolute bottom-8 left-8 w-20 h-20 border-b-4 border-l-4 border-nakshatra-gold/40 rounded-bl-3xl"></div>
+        <div class="absolute bottom-8 right-8 w-20 h-20 border-b-4 border-r-4 border-nakshatra-gold/40 rounded-br-3xl"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <!-- Decorative Top Line -->
+            <div class="flex items-center justify-center gap-4 mb-6 reveal">
+                <div class="h-px w-16 bg-nakshatra-gold/60"></div>
+                <i class="fas fa-om text-nakshatra-gold text-2xl"></i>
+                <div class="h-px w-16 bg-nakshatra-gold/60"></div>
+            </div>
+
+            <p class="text-nakshatra-gold font-playfair text-lg sm:text-xl tracking-widest uppercase mb-4 reveal">Welcome to</p>
+
+            <h1 class="font-cinzel text-5xl sm:text-7xl md:text-8xl text-nakshatra-cream font-bold mb-2 text-glow reveal">
+                Nakshatra
+            </h1>
+            <h2 class="font-cinzel text-2xl sm:text-3xl md:text-4xl text-nakshatra-gold font-bold mb-6 reveal">
+                Pickles & Home Foods
+            </h2>
+
+            <div class="flex items-center justify-center gap-3 mb-8 reveal">
+                <span class="h-px w-8 bg-nakshatra-gold/40"></span>
+                <p class="text-nakshatra-cream/90 font-playfair italic text-lg sm:text-xl">Pure &bull; Homestyle &bull; Authentic Taste</p>
+                <span class="h-px w-8 bg-nakshatra-gold/40"></span>
+            </div>
+
+            <p class="text-nakshatra-cream/70 max-w-2xl mx-auto mb-10 text-sm sm:text-base leading-relaxed reveal">
+                Experience the rich flavors of traditional Andhra pickles and homemade delicacies, 
+                crafted with love and authentic recipes passed down through generations. 
+                100% homemade with no artificial preservatives.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+                <a href="#products" class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg hover:shadow-nakshatra-gold/30 flex items-center justify-center gap-2">
+                    <i class="fas fa-utensils"></i>
+                    Explore Our Menu
+                </a>
+                <a href="https://wa.me/919949215199" target="_blank" class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    Chat on WhatsApp
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto reveal">
+                <div class="text-center">
+                    <div class="text-3xl sm:text-4xl font-cinzel text-nakshatra-gold font-bold">14+</div>
+                    <div class="text-nakshatra-cream/60 text-xs sm:text-sm mt-1">Varieties</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl sm:text-4xl font-cinzel text-nakshatra-gold font-bold">100%</div>
+                    <div class="text-nakshatra-cream/60 text-xs sm:text-sm mt-1">Homemade</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl sm:text-4xl font-cinzel text-nakshatra-gold font-bold">0</div>
+                    <div class="text-nakshatra-cream/60 text-xs sm:text-sm mt-1">Preservatives</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#products" class="text-nakshatra-gold/60 hover:text-nakshatra-gold transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 px-4 pattern-bg">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-12 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="h-px w-12 bg-nakshatra-maroon/30"></div>
+                    <i class="fas fa-pepper-hot text-nakshatra-maroon"></i>
+                    <div class="h-px w-12 bg-nakshatra-maroon/30"></div>
+                </div>
+                <h2 class="font-cinzel text-4xl sm:text-5xl text-nakshatra-maroon font-bold mb-3">Our Menu</h2>
+                <p class="font-playfair text-nakshatra-dark/60 text-lg italic">Handcrafted with tradition, served with love</p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button onclick="filterCategory('all')" class="cat-tab active px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="all">
+                    All Items
+                </button>
+                <button onclick="filterCategory('veg')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="veg">
+                    <i class="fas fa-leaf mr-1"></i> Veg Pickles
+                </button>
+                <button onclick="filterCategory('nonveg')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="nonveg">
+                    <i class="fas fa-drumstick-bite mr-1"></i> Non-Veg
+                </button>
+                <button onclick="filterCategory('snacks')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="snacks">
+                    <i class="fas fa-cookie mr-1"></i> Snacks
+                </button>
+                <button onclick="filterCategory('sweets')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="sweets">
+                    <i class="fas fa-candy-cane mr-1"></i> Sweets
+                </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-gradient-to-b from-nakshatra-cream to-nakshatra-warm/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="h-px w-12 bg-nakshatra-maroon/30"></div>
+                        <i class="fas fa-heart text-nakshatra-maroon"></i>
+                        <div class="h-px w-12 bg-nakshatra-maroon/30"></div>
+                    </div>
+                    <h2 class="font-cinzel text-4xl text-nakshatra-maroon font-bold mb-6">Our Story</h2>
+                    <div class="space-y-4 text-nakshatra-dark/70 leading-relaxed">
+                        <p class="font-playfair text-lg italic text-nakshatra-maroon/80">
+                            "Bringing the authentic taste of Andhra Pradesh to every home."
+                        </p>
+                        <p>
+                            At Nakshatra Pickles & Home Foods, we believe that the best flavors come from the heart. 
+                            Every jar of pickle, every batch of sweets, and every pack of snacks is prepared using 
+                            time-honored recipes passed down through generations.
+                        </p>
+                        <p>
+                            We use only the freshest ingredients sourced from local markets, combined with 
+                            traditional spices ground at home. Our commitment to quality means <strong>absolutely no 
+                            artificial preservatives</strong> — just pure, homestyle goodness.
+                        </p>
+                        <p>
+                            From the fiery Avakaya mango pickle to the delicate sweetness of Ariselu, 
+                            every product tells a story of tradition, care, and authentic Telugu cuisine.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="bg-white/60 p-4 rounded-lg border border-nakshatra-gold/20 text-center">
+                            <i class="fas fa-home text-nakshatra-maroon text-2xl mb-2"></i>
+                            <p class="font-semibold text-sm">Homemade</p>
+                        </div>
+                        <div class="bg-white/60 p-4 rounded-lg border border-nakshatra-gold/20 text-center">
+                            <i class="fas fa-leaf text-nakshatra-green text-2xl mb-2"></i>
+                            <p class="font-semibold text-sm">No Preservatives</p>
+                        </div>
+                        <div class="bg-white/60 p-4 rounded-lg border border-nakshatra-gold/20 text-center">
+                            <i class="fas fa-hand-holding-heart text-nakshatra-orange text-2xl mb-2"></i>
+                            <p class="font-semibold text-sm">Made with Love</p>
+                        </div>
+                        <div class="bg-white/60 p-4 rounded-lg border border-nakshatra-gold/20 text-center">
+                            <i class="fas fa-award text-nakshatra-gold text-2xl mb-2"></i>
+                            <p class="font-semibold text-sm">Best Quality</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="relative traditional-border bg-white p-4 rounded-lg">
+                        <div class="corner-decor corner-tl"></div>
+                        <div class="corner-decor corner-tr"></div>
+                        <div class="corner-decor corner-bl"></div>
+                        <div class="corner-decor corner-br"></div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="img-zoom rounded-lg overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=400&fit=crop" alt="Pickles" class="w-full h-full object-cover">
+                            </div>
+                            <div class="img-zoom rounded-lg overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop" alt="Spices" class="w-full h-full object-cover">
+                            </div>
+                            <div class="img-zoom rounded-lg overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop" alt="Sweets" class="w-full h-full object-cover">
+                            </div>
+                            <div class="img-zoom rounded-lg overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1626202158822-1c1d5c7c5b1c?w=400&h=400&fit=crop" alt="Traditional" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-nakshatra-maroon text-nakshatra-cream p-4 rounded-lg shadow-xl float-anim">
+                        <p class="font-cinzel font-bold text-lg">Since 2015</p>
+                        <p class="text-xs text-nakshatra-gold">Serving Authentic Taste</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-nakshatra-maroon relative overflow-hidden">
+        <div class="absolute inset-0 pattern-bg opacity-10"></div>
+        <div class="absolute top-0 left-0 w-64 h-64 bg-nakshatra-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-nakshatra-gold/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-12 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="h-px w-12 bg-nakshatra-gold/40"></div>
+                    <i class="fas fa-phone text-nakshatra-gold"></i>
+                    <div class="h-px w-12 bg-nakshatra-gold/40"></div>
+                </div>
+                <h2 class="font-cinzel text-4xl text-nakshatra-cream font-bold mb-3">Get In Touch</h2>
+                <p class="font-playfair text-nakshatra-cream/60 text-lg italic">We'd love to hear from you</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/919949215199" target="_blank" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-nakshatra-green rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-whatsapp text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">WhatsApp</h3>
+                    <p class="text-nakshatra-cream/80 text-sm">+91 99492 15199</p>
+                    <p class="text-nakshatra-cream/50 text-xs mt-2">Click to chat instantly</p>
+                </a>
+
+                <!-- Phone Card -->
+                <a href="tel:+916281010755" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-nakshatra-orange rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-phone-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">Call Us</h3>
+                    <p class="text-nakshatra-cream/80 text-sm">+91 62810 10755</p>
+                    <p class="text-nakshatra-cream/50 text-xs mt-2">Mon-Sat, 9AM - 8PM</p>
+                </a>
+
+                <!-- Location Card -->
+                <a href="https://maps.google.com/?q=Korutla,Jhansi+Road" target="_blank" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 bg-nakshatra-maroon border-2 border-nakshatra-gold rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-map-marker-alt text-nakshatra-gold text-xl"></i>
+                    </div>
+                    <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">Visit Us</h3>
+                    <p class="text-nakshatra-cream/80 text-sm">Beside Kasthuri Super Market</p>
+                    <p class="text-nakshatra-cream/60 text-sm">Jhansi Road, Korutla</p>
+                </a>
+            </div>
+
+            <!-- Quick Order CTA -->
+            <div class="mt-12 text-center reveal">
+                <div class="bg-white/5 backdrop-blur-sm border border-nakshatra-gold/30 rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h3 class="font-cinzel text-2xl text-nakshatra-gold font-bold mb-3">Ready to Order?</h3>
+                    <p class="text-nakshatra-cream/70 mb-6">Browse our products, add them to your basket, and send your order via WhatsApp with a single click!</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#products" class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
+                            <i class="fas fa-utensils mr-2"></i>Browse Products
+                        </a>
+                        <a href="https://wa.me/919949215199?text=Hi! I would like to place an order from Nakshatra Pickles." target="_blank" class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
+                            <i class="fab fa-whatsapp mr-2"></i>Quick Order
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-nakshatra-dark text-nakshatra-cream/60 py-8 px-4 border-t border-nakshatra-gold/20">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-center sm:text-left">
+                <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg">Nakshatra Pickles & Home Foods</h3>
+                <p class="text-sm mt-1">Pure &bull; Homestyle &bull; Authentic Taste</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/919949215199" target="_blank" class="w-10 h-10 bg-nakshatra-green/20 hover:bg-nakshatra-green rounded-full flex items-center justify-center transition-all hover:scale-110">
+                    <i class="fab fa-whatsapp text-nakshatra-green hover:text-white transition-colors"></i>
+                </a>
+                <a href="tel:+916281010755" class="w-10 h-10 bg-nakshatra-orange/20 hover:bg-nakshatra-orange rounded-full flex items-center justify-center transition-all hover:scale-110">
+                    <i class="fas fa-phone text-nakshatra-orange hover:text-white transition-colors"></i>
+                </a>
+            </div>
+            <p class="text-xs text-nakshatra-cream/40 text-center sm:text-right">
+                100% Homemade &bull; No Artificial Preservatives<br>
+                <span class="text-nakshatra-gold/60">Made with <i class="fas fa-heart text-nakshatra-maroon"></i> in Korutla</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed bottom-6 right-6 bg-nakshatra-maroon text-nakshatra-cream px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 border border-nakshatra-gold/30">
+        <i class="fas fa-check-circle text-nakshatra-gold text-xl"></i>
+        <div>
+            <p id="toastTitle" class="font-semibold text-sm">Added to basket!</p>
+            <p id="toastMsg" class="text-xs text-nakshatra-cream/70">Item added successfully</p>
+        </div>
+    </div>
+
+    <script>
+        // ===== PRODUCT DATA =====
+        const products = [
+            // Vegetarian Pickles
+            { id: 1, name: "Avakaya", category: "veg", desc: "Classic Andhra mango pickle with mustard & spices", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-apple-alt" },
+            { id: 2, name: "Amla Pickle (Usirikaya)", category: "veg", desc: "Tangy Indian gooseberry pickle", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-lemon" },
+            { id: 3, name: "Tomato Pickle", category: "veg", desc: "Spicy tomato pickle with garlic", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-apple-alt" },
+            { id: 4, name: "Gongura Pickle", category: "veg", desc: "Sorrel leaves pickle - Andhra specialty", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-leaf" },
+            { id: 5, name: "Lemon / Citron Pickle", category: "veg", desc: "Zesty lemon pickle with traditional spices", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-lemon" },
+            { id: 6, name: "Garlic (Vellulli) Pickle", category: "veg", desc: "Fiery garlic pickle for spice lovers", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-pepper-hot" },
+            { id: 7, name: "Ginger (Allam) Pickle", category: "veg", desc: "Aromatic ginger pickle with tang", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-seedling" },
+            { id: 8, name: "Mixed Vegetable Pickle", category: "veg", desc: "Assorted vegetables in spicy masala", prices: { "250g": 150, "500g": 300, "1kg": 600 }, icon: "fa-carrot" },
+
+            // Non-Vegetarian Pickles
+            { id: 9, name: "Boneless Chicken Pickle", category: "nonveg", desc: "Tender chicken in rich spicy masala", prices: { "250g": 300, "500g": 600, "1kg": 1200 }, icon: "fa-drumstick-bite" },
+            { id: 10, name: "Fish Pickle", category: "nonveg", desc: "Premium fish pickle with coastal spices", prices: { "250g": 350, "500g": 700, "1kg": 1400 }, icon: "fa-fish" },
+            { id: 11, name: "Mutton Pickle", category: "nonveg", desc: "Succulent mutton in aromatic pickle masala", prices: { "250g": 500, "500g": 1000, "1kg": 2000 }, icon: "fa-drumstick-bite" },
+
+            // Snacks
+            { id: 12, name: "Murukulu", category: "snacks", desc: "Crispy rice flour spirals - perfect tea-time snack", prices: { "250g": 120, "500g": 240 }, icon: "fa-cookie" },
+            { id: 13, name: "Garelu", category: "snacks", desc: "Traditional savory lentil donuts", prices: { "250g": 120, "500g": 240 }, icon: "fa-circle" },
+            { id: 14, name: "Sakinalu", category: "snacks", desc: "Crispy rice flour discs with sesame", prices: { "250g": 120, "500g": 240 }, icon: "fa-sun" },
+
+            // Sweets
+            { id: 15, name: "Garijalu / Gariyalu", category: "sweets", desc: "Crispy sweet dumplings with coconut filling", prices: { "250g": 90, "500g": 180, "1kg": 360 }, icon: "fa-candy-cane" },
+            { id: 16, name: "Ariselu", category: "sweets", desc: "Traditional rice flour & jaggery sweet", prices: { "250g": 90, "500g": 180, "1kg": 360 }, icon: "fa-cookie" },
+            { id: 17, name: "Boondi Laddu", category: "sweets", desc: "Soft, melt-in-mouth laddus", prices: { "250g": 90, "500g": 180, "1kg": 360 }, icon: "fa-birthday-cake" },
+        ];
+
+        // ===== STATE =====
+        let cart = [];
+        let currentCategory = 'all';
+        let selectedSizes = {};
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initSpiceParticles();
+            renderProducts();
+            initScrollReveal();
+            initNavbarScroll();
+        });
+
+        // ===== SPICE PARTICLES =====
+        function initSpiceParticles() {
+            const container = document.getElementById('spiceContainer');
+            const spices = ['🌶️', '🥭', '🧄', '🍋', '🌿', '✨'];
+
+            for (let i = 0; i < 15; i++) {
+                const el = document.createElement('div');
+                el.className = 'spice-particle';
+                el.textContent = spices[Math.floor(Math.random() * spices.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                el.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                el.style.animationDelay = (Math.random() * 15) + 's';
+                el.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(el);
+            }
+        }
+
+        // ===== NAVBAR SCROLL =====
+        function initNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('glass-nav', 'shadow-md');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.remove('glass-nav', 'shadow-md');
+                    navbar.classList.remove('py-2');
+                    navbar.classList.add('py-4');
+                }
+            });
+        }
+
+        // ===== SCROLL REVEAL =====
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // ===== RENDER PRODUCTS =====
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const filtered = currentCategory === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentCategory);
+
+            grid.innerHTML = filtered.map(product => {
+                const sizes = Object.keys(product.prices);
+                const defaultSize = sizes[0];
+                if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
+                const currentSize = selectedSizes[product.id];
+                const price = product.prices[currentSize];
+
+                const sizeButtons = sizes.map(size => `
+                    <button onclick="selectSize(${product.id}, '${size}', event)" 
+                        class="px-2 py-1 text-xs rounded-md border transition-all ${currentSize === size ? 'bg-nakshatra-maroon text-white border-nakshatra-maroon' : 'bg-white text-nakshatra-dark/70 border-nakshatra-gold/30 hover:border-nakshatra-maroon'}">
+                        ${size}
+                    </button>
+                `).join('');
+
+                const categoryColors = {
+                    veg: 'bg-nakshatra-green/10 text-nakshatra-green border-nakshatra-green/20',
+                    nonveg: 'bg-nakshatra-maroon/10 text-nakshatra-maroon border-nakshatra-maroon/20',
+                    snacks: 'bg-nakshatra-orange/10 text-nakshatra-orange border-nakshatra-orange/20',
+                    sweets: 'bg-purple-100 text-purple-700 border-purple-200'
+                };
+
+                const categoryLabels = { veg: 'Veg', nonveg: 'Non-Veg', snacks: 'Snack', sweets: 'Sweet' };
+
+                return `
+                    <div class="product-card bg-white rounded-xl overflow-hidden border border-nakshatra-gold/10 shadow-md reveal">
+                        <div class="relative bg-gradient-to-br from-nakshatra-warm/50 to-nakshatra-cream p-6 flex items-center justify-center" style="min-height: 160px;">
+                            <div class="w-20 h-20 bg-nakshatra-maroon/10 rounded-full flex items-center justify-center">
+                                <i class="fas ${product.icon} text-nakshatra-maroon text-3xl"></i>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="text-xs px-2 py-1 rounded-full border ${categoryColors[product.category]}">
+                                    ${categoryLabels[product.category]}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-playfair font-bold text-nakshatra-dark text-lg mb-1">${product.name}</h3>
+                            <p class="text-nakshatra-dark/50 text-xs mb-3 line-clamp-2">${product.desc}</p>
+
+                            <div class="flex gap-1 mb-3 flex-wrap">
+                                ${sizeButtons}
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-2xl font-bold text-nakshatra-maroon">₹${price}</span>
+                                    <span class="text-xs text-nakshatra-dark/40 ml-1">/${currentSize}</span>
+                                </div>
+                                <button onclick="addToCart(${product.id}, event)" 
+                                    class="bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white px-4 py-2 rounded-lg text-sm font-semibold btn-shine transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
+                                    <i class="fas fa-plus"></i>
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Re-observe new elements
+            setTimeout(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('active');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
+            }, 100);
+        }
+
+        // ===== FILTER CATEGORY =====
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.cat === cat);
+            });
+            renderProducts();
+        }
+
+        // ===== SELECT SIZE =====
+        function selectSize(productId, size, event) {
+            event.stopPropagation();
+            selectedSizes[productId] = size;
+            renderProducts();
+        }
+
+        // ===== CART FUNCTIONS =====
+        function addToCart(productId, event) {
+            if (event) event.stopPropagation();
+
+            const product = products.find(p => p.id === productId);
+            const size = selectedSizes[productId] || Object.keys(product.prices)[0];
+            const existing = cart.find(item => item.id === productId && item.size === size);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    size: size,
+                    price: product.prices[size],
+                    qty: 1,
+                    icon: product.icon
+                });
+            }
+
+            updateCartUI();
+            showToast('Added to basket!', `${product.name} (${size}) added`);
+
+            // Bounce badge
+            const badge = document.getElementById('cartBadge');
+            badge.classList.add('cart-bounce');
+            setTimeout(() => badge.classList.remove('cart-bounce'), 300);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const itemsContainer = document.getElementById('cartItems');
+            const emptyState = document.getElementById('cartEmpty');
+            const footer = document.getElementById('cartFooter');
+            const totalItems = document.getElementById('cartTotalItems');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            if (totalQty > 0) {
+                badge.textContent = totalQty;
+                badge.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                footer.classList.remove('hidden');
+                totalItems.textContent = totalQty;
+
+                itemsContainer.innerHTML = cart.map((item, idx) => `
+                    <div class="bg-white rounded-lg p-3 border border-nakshatra-gold/10 shadow-sm flex gap-3 items-center">
+                        <div class="w-10 h-10 bg-nakshatra-maroon/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas ${item.icon} text-nakshatra-maroon text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm text-nakshatra-dark truncate">${item.name}</p>
+                            <p class="text-xs text-nakshatra-dark/50">${item.size} × ₹${item.price}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQty(${idx}, -1)" class="qty-btn w-6 h-6 bg-nakshatra-warm rounded-full flex items-center justify-center text-nakshatra-maroon hover:bg-nakshatra-maroon hover:text-white text-xs">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
+                            <button onclick="updateQty(${idx}, 1)" class="qty-btn w-6 h-6 bg-nakshatra-warm rounded-full flex items-center justify-center text-nakshatra-maroon hover:bg-nakshatra-maroon hover:text-white text-xs">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" class="text-nakshatra-dark/30 hover:text-nakshatra-maroon transition-colors p-1">
+                            <i class="fas fa-trash-alt text-xs"></i>
+                        </button>
+                    </div>
+                `).join('');
+            } else {
+                badge.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                footer.classList.add('hidden');
+                itemsContainer.innerHTML = '';
+            }
+        }
+
+        // ===== TOGGLE CART =====
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+        }
+
+        // ===== WHATSAPP ORDER =====
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                showToast('Basket is empty!', 'Add some items first');
+                return;
+            }
+
+            let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
+            message += "Hello! I would like to place an order:\n\n";
+
+            let total = 0;
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                message += `${idx + 1}. *${item.name}*\n`;
+                message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
+            });
+
+            message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
+            message += `*Estimated Total: ₹${total}*\n\n`;
+            message += "Please confirm availability and share payment details.\nThank you! 🙏";
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/919949215199?text=${encoded}`, '_blank');
+        }
+
+        // ===== TOAST =====
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
