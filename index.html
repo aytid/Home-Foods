@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -263,6 +264,13 @@
             top: 80px;
             z-index: 30;
         }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
     </style>
 <base target="_blank">
 </head>
@@ -351,9 +359,13 @@
             <p class="text-sm mt-1">Add some delicious pickles!</p>
         </div>
         <div id="cartFooter" class="p-6 border-t border-nakshatra-gold/20 bg-white/50 hidden">
-            <div class="flex justify-between items-center mb-4">
+            <div class="flex justify-between items-center mb-2">
                 <span class="font-playfair text-lg">Total Items:</span>
                 <span id="cartTotalItems" class="font-bold text-nakshatra-maroon">0</span>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-playfair text-lg">Total Amount:</span>
+                <span id="cartTotalPrice" class="font-bold text-nakshatra-maroon text-xl">₹0</span>
             </div>
             <button onclick="sendWhatsAppOrder()" class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-semibold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
                 <i class="fab fa-whatsapp text-xl"></i>
@@ -695,48 +707,65 @@
     </div>
 
     <script>
-        // ===== PRODUCT DATA WITH REAL IMAGES =====
-        const products = [
-            // Vegetarian Pickles
-            { id: 1, name: "Avakaya", category: "veg", desc: "Classic Andhra mango pickle with mustard & spices", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/www.masalakorb.com/1bf25ec944dec285de188213a0b56de8565ae6f4.jpg" },
-            { id: 2, name: "Amla Pickle (Usirikaya)", category: "veg", desc: "Tangy Indian gooseberry pickle", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/www.naturestrunk.com/98c0de1b8649d6f37d295570718480d6d54a4883.jpg" },
-            { id: 3, name: "Tomato Pickle", category: "veg", desc: "Spicy tomato pickle with garlic", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/www.indianhealthyrecipes.com/9b765d2ed43f865ae2a78ccddef0a2025af073d0.jpg" },
-            { id: 4, name: "Gongura Pickle", category: "veg", desc: "Sorrel leaves pickle - Andhra specialty", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/b8e453416d7931e5d8d835b427fbfcc8e5c5d30b.jpg" },
-            { id: 5, name: "Lemon / Citron Pickle", category: "veg", desc: "Zesty lemon pickle with traditional spices", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/www.indianhealthyrecipes.com/bf76b521464d30fca6ce90e43b3dc3724fd1de8b.jpg" },
-            { id: 6, name: "Garlic (Vellulli) Pickle", category: "veg", desc: "Fiery garlic pickle for spice lovers", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/233ccddc19fdacf74c30abcbfb54917c53d85b84.jpg" },
-            { id: 7, name: "Ginger (Allam) Pickle", category: "veg", desc: "Aromatic ginger pickle with tang", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/www.godavarivantillu.com/4c2a1a5e750100cf651e335abb7d1e880b0307d9.png" },
-            { id: 8, name: "Mixed Vegetable Pickle", category: "veg", desc: "Assorted vegetables in spicy masala", prices: { "250g": 150, "500g": 300, "1kg": 600 }, image: "https://kimi-web-img.moonshot.cn/img/signatureconcoctions.com/5c2913941d66575a6ba9bdc79873530051342163.jpg" },
+        const SUPABASE_URL = 'https://lstmvrrqfrlyxcdboybt.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_mFOFSrzXkxvj1Sk30hm3-A_ouIhkUsy';
+const { createClient } = supabase;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-            // Non-Vegetarian Pickles
-            { id: 9, name: "Boneless Chicken Pickle", category: "nonveg", desc: "Tender chicken in rich spicy masala", prices: { "250g": 300, "500g": 600, "1kg": 1200 }, image: "https://kimi-web-img.moonshot.cn/img/ik.imagekit.io/bf0e5de9e149f4150350e7a04e118317580909aa.webp" },
-            { id: 10, name: "Fish Pickle", category: "nonveg", desc: "Premium fish pickle with coastal spices", prices: { "250g": 350, "500g": 700, "1kg": 1400 }, image: "https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/27efd7b7552afedfce307a249f439955a2866d7a.jpg" },
-            { id: 11, name: "Mutton Pickle", category: "nonveg", desc: "Succulent mutton in aromatic pickle masala", prices: { "250g": 500, "500g": 1000, "1kg": 2000 }, image: "https://kimi-web-img.moonshot.cn/img/aahari.com/fe3c1ae7752e76597d0685b84f0a24b169870a9a.jpg" },
+let products = [];
+let cart = [];
+let currentCategory = 'all';
+let selectedSizes = {};
 
-            // Snacks
-            { id: 12, name: "Murukulu", category: "snacks", desc: "Crispy rice flour spirals - perfect tea-time snack", prices: { "250g": 120, "500g": 240 }, image: "https://kimi-web-img.moonshot.cn/img/www.cookwithkushi.com/35441d873772796b936aa6a84645e27af6d4335e.jpg" },
-            { id: 13, name: "Garelu", category: "snacks", desc: "Traditional savory lentil donuts", prices: { "250g": 120, "500g": 240 }, image: "https://kimi-web-img.moonshot.cn/img/i0.wp.com/2c6b032f7235118c53a5d1eb60368ea67312f693.jpg" },
-            { id: 14, name: "Sakinalu", category: "snacks", desc: "Crispy rice flour discs with sesame", prices: { "250g": 120, "500g": 240 }, image: "https://kimi-web-img.moonshot.cn/img/vellankifoods.com/f195df54681781bb720f43fedc8d1b3883ec009a.jpg" },
+async function loadProducts() {
+    const { data, error } = await supabaseClient
+        .from('products')
+        .select('*')
+        .eq('active', true)
+        .order('name');
 
-            // Sweets
-            { id: 15, name: "Garijalu / Gariyalu", category: "sweets", desc: "Crispy sweet dumplings with coconut filling", prices: { "250g": 90, "500g": 180, "1kg": 360 }, image: "https://kimi-web-img.moonshot.cn/img/www.indianhealthyrecipes.com/0ed3fc9f8112bf997ea0d3d01d640370fdab18ea.jpg" },
-            { id: 16, name: "Ariselu", category: "sweets", desc: "Traditional rice flour & jaggery sweet", prices: { "250g": 90, "500g": 180, "1kg": 360 }, image: "https://kimi-web-img.moonshot.cn/img/gpullareddysweets.com/f146140f997e0454089fed4f2c02fd4fdcfef84d.webp" },
-            { id: 17, name: "Boondi Laddu", category: "sweets", desc: "Soft, melt-in-mouth laddus", prices: { "250g": 90, "500g": 180, "1kg": 360 }, image: "https://kimi-web-img.moonshot.cn/img/i0.wp.com/cfa6853ae9f0d37ff6b924067fe62baecb2c45b9.jpg" },
-        ];
+    if (error) {
+        console.error('Failed to load products:', error);
+        showToast('Error', 'Could not load products');
+        return;
+    }
 
-        // ===== STATE =====
-        let cart = [];
-        let currentCategory = 'all';
-        let selectedSizes = {};
+    products = data || [];
+    renderProducts();
+}
+
 
         // ===== INIT =====
-        document.addEventListener('DOMContentLoaded', () => {
-            initSpiceParticles();
-            loadCart();
-            renderProducts();
-            initScrollReveal();
-            initNavbarScroll();
-            updateCartUI();
-        });
+        document.addEventListener('DOMContentLoaded', initApp);
+
+        async function initApp() {
+            try {
+                showLoading(true);
+                await loadProducts();
+                loadCart();
+                updateCartUI();
+                initScrollReveal();
+                initSpiceParticles();
+                initNavbarScroll();
+            } catch (err) {
+                console.error('App init failed:', err);
+                showToast('Error', 'Failed to initialize. Please refresh.');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function showLoading(show) {
+            const grid = document.getElementById('productsGrid');
+            if (show && grid) {
+                grid.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center py-20">
+                        <div class="w-12 h-12 border-4 border-nakshatra-gold/20 border-t-nakshatra-maroon rounded-full animate-spin mb-4"></div>
+                        <p class="text-nakshatra-dark/60 font-playfair">Loading our delicious menu...</p>
+                    </div>
+                `;
+            }
+        }
 
         // ===== LOCAL STORAGE =====
         function saveCart() {
@@ -804,19 +833,33 @@
         // ===== RENDER PRODUCTS =====
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
-            const filtered = currentCategory === 'all' 
-                ? products 
+            if (!grid) return;
+
+            let filtered = currentCategory === 'all'
+                ? products
                 : products.filter(p => p.category === currentCategory);
 
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <i class="fas fa-basket-shopping text-4xl text-nakshatra-dark/20 mb-4"></i>
+                        <p class="text-nakshatra-dark/50 font-playfair">No products available in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+
             grid.innerHTML = filtered.map(product => {
+                if (!product.prices || typeof product.prices !== 'object') return '';
                 const sizes = Object.keys(product.prices);
+                if (sizes.length === 0) return '';
                 const defaultSize = sizes[0];
                 if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
                 const currentSize = selectedSizes[product.id];
                 const price = product.prices[currentSize];
 
                 const sizeButtons = sizes.map(size => `
-                    <button onclick="selectSize(${product.id}, '${size}', event)" 
+                    <button onclick="selectSize('${product.id}', '${size}', event)" 
                         class="px-2 py-1 text-xs rounded-md border transition-all ${currentSize === size ? 'bg-nakshatra-maroon text-white border-nakshatra-maroon' : 'bg-white text-nakshatra-dark/70 border-nakshatra-gold/30 hover:border-nakshatra-maroon'}">
                         ${size}
                     </button>
@@ -839,12 +882,12 @@
                 return `
                     <div class="product-card bg-white rounded-xl overflow-hidden border border-nakshatra-gold/10 shadow-md reveal">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <img src="${product.image || 'https://via.placeholder.com/400?text=No+Image'}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <div class="img-overlay absolute inset-0"></div>
                             ${cartBadge}
                             <div class="absolute top-3 right-3">
-                                <span class="text-xs px-2 py-1 rounded-full border ${categoryColors[product.category]}">
-                                    ${categoryLabels[product.category]}
+                                <span class="text-xs px-2 py-1 rounded-full border ${categoryColors[product.category] || 'bg-gray-100 text-gray-600 border-gray-200'}">
+                                    ${categoryLabels[product.category] || product.category}
                                 </span>
                             </div>
                             <div class="absolute bottom-3 left-3 right-3">
@@ -852,7 +895,7 @@
                             </div>
                         </div>
                         <div class="p-5">
-                            <p class="text-nakshatra-dark/50 text-xs mb-3 line-clamp-2">${product.desc}</p>
+                            <p class="text-nakshatra-dark/50 text-xs mb-3 line-clamp-2">${product.description || ''}</p>
 
                             <div class="flex gap-1 mb-3 flex-wrap">
                                 ${sizeButtons}
@@ -863,7 +906,7 @@
                                     <span class="text-2xl font-bold text-nakshatra-maroon">₹${price}</span>
                                     <span class="text-xs text-nakshatra-dark/40 ml-1">/${currentSize}</span>
                                 </div>
-                                <button onclick="addToCart(${product.id}, event)" 
+                                <button onclick="addToCart('${product.id}', event)" 
                                     class="bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white px-4 py-2 rounded-lg text-sm font-semibold btn-shine transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
                                     <i class="fas fa-plus"></i>
                                     Add
@@ -883,15 +926,120 @@
                 document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
             }, 100);
         }
+// ===== RENDER PRODUCTS =====
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
 
-        // ===== FILTER CATEGORY =====
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('.cat-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.dataset.cat === cat);
+    let filtered = currentCategory === 'all'
+        ? products
+        : products.filter(p => p.category === currentCategory);
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full text-center py-16">
+                <i class="fas fa-basket-shopping text-4xl text-nakshatra-dark/20 mb-4"></i>
+                <p class="text-nakshatra-dark/50 font-playfair">No products available in this category.</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(product => {
+        if (!product.prices || typeof product.prices !== 'object') return '';
+        const sizes = Object.keys(product.prices);
+        if (sizes.length === 0) return '';
+        const defaultSize = sizes[0];
+        if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
+        const currentSize = selectedSizes[product.id];
+        const price = product.prices[currentSize];
+
+        const sizeButtons = sizes.map(size => `
+            <button onclick="selectSize('${product.id}', '${size}', event)" 
+                class="px-2 py-1 text-xs rounded-md border transition-all ${currentSize === size ? 'bg-nakshatra-maroon text-white border-nakshatra-maroon' : 'bg-white text-nakshatra-dark/70 border-nakshatra-gold/30 hover:border-nakshatra-maroon'}">
+                ${size}
+            </button>
+        `).join('');
+
+        // Updated color object mapping keys directly to your database strings
+        const categoryColors = {
+            'Veg Pickles': 'bg-nakshatra-green/10 text-nakshatra-green border-nakshatra-green/20',
+            'Non-Veg': 'bg-nakshatra-maroon/10 text-nakshatra-maroon border-nakshatra-maroon/20',
+            'Snacks': 'bg-nakshatra-orange/10 text-nakshatra-orange border-nakshatra-orange/20',
+            'Sweets': 'bg-purple-100 text-purple-700 border-purple-200'
+        };
+
+        // Check if item is already in cart
+        const inCart = cart.filter(item => item.id === product.id);
+        const cartQty = inCart.reduce((sum, item) => sum + item.qty, 0);
+        const cartBadge = cartQty > 0 ? `<div class="absolute top-3 left-3 bg-nakshatra-orange text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">${cartQty} in basket</div>` : '';
+
+        return `
+            <div class="product-card bg-white rounded-xl overflow-hidden border border-nakshatra-gold/10 shadow-md reveal">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="${product.image || 'https://via.placeholder.com/400?text=No+Image'}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="img-overlay absolute inset-0"></div>
+                    ${cartBadge}
+                    <div class="absolute top-3 right-3">
+                        <span class="text-xs px-2 py-1 rounded-full border ${categoryColors[product.category] || 'bg-gray-100 text-gray-600 border-gray-200'}">
+                            ${product.category}
+                        </span>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <h3 class="font-playfair font-bold text-white text-lg drop-shadow-lg">${product.name}</h3>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <p class="text-nakshatra-dark/50 text-xs mb-3 line-clamp-2">${product.description || ''}</p>
+
+                    <div class="flex gap-1 mb-3 flex-wrap">
+                        ${sizeButtons}
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-bold text-nakshatra-maroon">₹${price}</span>
+                            <span class="text-xs text-nakshatra-dark/40 ml-1">/${currentSize}</span>
+                        </div>
+                        <button onclick="addToCart('${product.id}', event)" 
+                            class="bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white px-4 py-2 rounded-lg text-sm font-semibold btn-shine transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
+                            <i class="fas fa-plus"></i>
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-            renderProducts();
-        }
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
+    }, 100);
+}
+
+// ===== FILTER CATEGORY =====
+function filterCategory(cat) {
+    // Maps short HTML selection tokens back to actual database values
+    const filterMap = {
+        'all': 'all',
+        'veg': 'Veg Pickles',
+        'nonveg': 'Non-Veg',
+        'snacks': 'Snacks',
+        'sweets': 'Sweets'
+    };
+    
+    currentCategory = filterMap[cat];
+    
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.cat === cat);
+    });
+    renderProducts();
+}
 
         // ===== SELECT SIZE =====
         function selectSize(productId, size, event) {
@@ -949,6 +1097,8 @@
         }
 
         function clearCart() {
+            if (cart.length === 0) return;
+            if (!confirm('Are you sure you want to clear your basket?')) return;
             cart = [];
             saveCart();
             updateCartUI();
@@ -1003,6 +1153,9 @@
                 emptyState.classList.add('hidden');
                 footer.classList.remove('hidden');
                 totalItems.textContent = totalQty;
+                const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                const totalPriceEl = document.getElementById('cartTotalPrice');
+                if (totalPriceEl) totalPriceEl.textContent = '₹' + totalPrice;
 
                 itemsContainer.innerHTML = cart.map((item, idx) => `
                     <div class="bg-white rounded-lg p-3 border border-nakshatra-gold/10 shadow-sm flex gap-3 items-center">
@@ -1050,32 +1203,68 @@
         }
 
         // ===== WHATSAPP ORDER =====
-        function sendWhatsAppOrder() {
-            if (cart.length === 0) {
-                showToast('Basket is empty!', 'Add some items first');
-                return;
-            }
+        async function sendWhatsAppOrder() {
+    if (cart.length === 0) {
+        showToast('Basket is empty!', 'Add some items first');
+        return;
+    }
 
-            let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
-            message += "Hello! I would like to place an order:\n\n";
+    const name = prompt('Your name:');
+    if (!name || name.trim().length < 2) {
+        showToast('Invalid Name', 'Please enter your name (at least 2 characters)');
+        return;
+    }
+    const phone = prompt('Your phone number (10 digits):');
+    if (!phone || !/^[0-9]{10}$/.test(phone)) {
+        showToast('Invalid Phone', 'Please enter a valid 10-digit phone number');
+        return;
+    }
+    const address = prompt('Delivery address (or type "pickup"):');
+    if (!address || address.trim().length < 3) {
+        showToast('Invalid Address', 'Please enter a valid address or type "pickup"');
+        return;
+    }
 
-            let total = 0;
-            cart.forEach((item, idx) => {
-                const itemTotal = item.price * item.qty;
-                total += itemTotal;
-                message += `${idx + 1}. *${item.name}*\n`;
-                message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
-            });
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-            message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
-            message += `*Estimated Total: ₹${total}*\n\n`;
-            message += "Please confirm availability and share payment details.\nThank you! 🙏";
+    // Save order to Supabase
+    const { error } = await supabaseClient.from('orders').insert({
+        customer_name: name,
+        phone: phone,
+        address: address,
+        items: cart,
+        total: total,
+        status: 'pending'
+    });
 
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
-        }
+    if (error) {
+        console.error('Order save failed:', error);
+        showToast('Warning', 'Order could not be saved to records, but WhatsApp will still open.');
+    } else {
+        showToast('Order recorded!', 'Saved successfully');
+    }
 
-        // ===== TOAST =====
+    // Build WhatsApp message
+    let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
+    message += `*Customer:* ${name}\n`;
+    message += `*Phone:* ${phone}\n`;
+    message += `*Address:* ${address}\n\n`;
+    message += "Hello! I would like to place an order:\n\n";
+
+    cart.forEach((item, idx) => {
+        const itemTotal = item.price * item.qty;
+        message += `${idx + 1}. *${item.name}*\n`;
+        message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
+    });
+
+    message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
+    message += `*Estimated Total: ₹${total}*\n\n`;
+    message += "Please confirm availability and share payment details.\nThank you! 🙏";
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
+}
+         // ===== TOAST =====
         function showToast(title, msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toastTitle').textContent = title;
@@ -1083,6 +1272,7 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
+
     </script>
 </body>
 </html>
