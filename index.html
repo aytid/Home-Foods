@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -33,7 +36,9 @@
         }
     </script>
     <style>
-        * { scroll-behavior: smooth; }
+        * {
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -41,37 +46,83 @@
             overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FDF6E3; }
-        ::-webkit-scrollbar-thumb { background: #6B1A1A; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #C9A227; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FDF6E3;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #6B1A1A;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C9A227;
+        }
 
         .traditional-border {
             border: 3px solid #C9A227;
             position: relative;
         }
+
         .traditional-border::before {
             content: '';
             position: absolute;
-            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
             border: 1px solid #6B1A1A;
             pointer-events: none;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
         }
-        .float-anim { animation: float 4s ease-in-out infinite; }
-        .float-anim-delay { animation: float 5s ease-in-out infinite 1s; }
-        .float-anim-delay2 { animation: float 6s ease-in-out infinite 2s; }
+
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .float-anim-delay {
+            animation: float 5s ease-in-out infinite 1s;
+        }
+
+        .float-anim-delay2 {
+            animation: float 6s ease-in-out infinite 2s;
+        }
 
         @keyframes spiceFloat {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(720deg);
+                opacity: 0;
+            }
         }
+
         .spice-particle {
             position: fixed;
             pointer-events: none;
@@ -82,6 +133,7 @@
         .product-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .product-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(107, 26, 26, 0.25);
@@ -91,15 +143,19 @@
             position: relative;
             overflow: hidden;
         }
+
         .btn-shine::after {
             content: '';
             position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transform: rotate(45deg) translateX(-100%);
             transition: transform 0.6s;
         }
+
         .btn-shine:hover::after {
             transform: rotate(45deg) translateX(100%);
         }
@@ -109,22 +165,43 @@
             transform: translateY(40px);
             transition: all 0.8s ease-out;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
         @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
         }
-        .cart-bounce { animation: bounce 0.3s ease; }
+
+        .cart-bounce {
+            animation: bounce 0.3s ease;
+        }
 
         @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(201, 162, 39, 0.3); }
-            50% { text-shadow: 0 0 30px rgba(201, 162, 39, 0.6), 0 0 60px rgba(201, 162, 39, 0.2); }
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 30px rgba(201, 162, 39, 0.6), 0 0 60px rgba(201, 162, 39, 0.2);
+            }
         }
-        .text-glow { animation: textGlow 3s ease-in-out infinite; }
+
+        .text-glow {
+            animation: textGlow 3s ease-in-out infinite;
+        }
 
         .pattern-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -132,23 +209,52 @@
 
         .corner-decor {
             position: absolute;
-            width: 60px; height: 60px;
+            width: 60px;
+            height: 60px;
             border: 2px solid #C9A227;
         }
-        .corner-tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
-        .corner-tr { top: -5px; right: -5px; border-left: none; border-bottom: none; }
-        .corner-bl { bottom: -5px; left: -5px; border-right: none; border-top: none; }
-        .corner-br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+
+        .corner-tl {
+            top: -5px;
+            left: -5px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            top: -5px;
+            right: -5px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bl {
+            bottom: -5px;
+            left: -5px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-br {
+            bottom: -5px;
+            right: -5px;
+            border-left: none;
+            border-top: none;
+        }
 
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .mobile-menu.open { transform: translateX(0); }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
 
         .qty-btn {
             transition: all 0.2s;
         }
+
         .qty-btn:active {
             transform: scale(0.9);
         }
@@ -162,9 +268,9 @@
         .section-divider {
             height: 60px;
             background: linear-gradient(135deg, #6B1A1A 25%, transparent 25%) -30px 0,
-                        linear-gradient(225deg, #6B1A1A 25%, transparent 25%) -30px 0,
-                        linear-gradient(315deg, #6B1A1A 25%, transparent 25%),
-                        linear-gradient(45deg, #6B1A1A 25%, transparent 25%);
+                linear-gradient(225deg, #6B1A1A 25%, transparent 25%) -30px 0,
+                linear-gradient(315deg, #6B1A1A 25%, transparent 25%),
+                linear-gradient(45deg, #6B1A1A 25%, transparent 25%);
             background-size: 60px 60px;
             background-color: #FDF6E3;
             opacity: 0.15;
@@ -184,13 +290,17 @@
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .cart-sidebar.open { transform: translateX(0); }
+
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
 
         .cart-overlay {
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s;
         }
+
         .cart-overlay.open {
             opacity: 1;
             pointer-events: auto;
@@ -200,10 +310,12 @@
             position: relative;
             transition: all 0.3s;
         }
+
         .cat-tab.active {
             background: #6B1A1A;
             color: #FDF6E3;
         }
+
         .cat-tab.active::after {
             content: '';
             position: absolute;
@@ -222,21 +334,28 @@
         }
 
         @media (max-width: 768px) {
-            .hero-bg { background-attachment: scroll; }
+            .hero-bg {
+                background-attachment: scroll;
+            }
         }
 
         .toast {
             transform: translateX(120%);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .toast.show { transform: translateX(0); }
+
+        .toast.show {
+            transform: translateX(0);
+        }
 
         .img-zoom {
             overflow: hidden;
         }
+
         .img-zoom img {
             transition: transform 0.5s ease;
         }
+
         .img-zoom:hover img {
             transform: scale(1.1);
         }
@@ -248,6 +367,7 @@
             transition: max-height 0.5s ease-out, opacity 0.3s ease;
             opacity: 0;
         }
+
         .cart-summary-bar.show {
             max-height: 500px;
             opacity: 1;
@@ -255,7 +375,7 @@
 
         /* Image overlay gradient */
         .img-overlay {
-            background: linear-gradient(to top, rgba(44,24,16,0.7) 0%, transparent 50%);
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.7) 0%, transparent 50%);
         }
 
         /* Sticky cart preview */
@@ -266,14 +386,67 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .animate-spin {
             animation: spin 1s linear infinite;
         }
+
+        .instagram-btn {
+            background: linear-gradient(45deg,
+                    #405DE6,
+                    #5851DB,
+                    #833AB4,
+                    #C13584,
+                    #E1306C,
+                    #FD1D1D,
+                    #F77737,
+                    #FCAF45);
+            color: white;
+            transition: all 0.35s ease;
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(193, 53, 132, .45);
+            filter: brightness(1.08);
+        }
+
+        .instagram-btn i {
+            font-size: 1.2rem;
+        }
+        #orderModal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#orderModal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+#orderModal .absolute.inset-0.flex {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+#orderModal.open .absolute.inset-0.flex {
+    transform: translateY(0);
+}
+/* Floating Basket */
+#floatingBasket {
+    box-shadow: 0 8px 30px rgba(107, 26, 26, 0.4);
+}
+#floatingBasket:hover {
+    box-shadow: 0 12px 40px rgba(107, 26, 26, 0.5);
+}
+#floatingBasket.hidden {
+    display: none !important;
+}
     </style>
-<base target="_blank">
 </head>
+
 <body class="bg-nakshatra-cream text-nakshatra-dark">
 
     <!-- Floating Spice Particles -->
@@ -284,7 +457,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <a href="#" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 bg-nakshatra-maroon rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-10 h-10 bg-nakshatra-maroon rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                         <span class="text-nakshatra-gold font-cinzel font-bold text-lg">N</span>
                     </div>
                     <div class="hidden sm:block">
@@ -294,30 +468,41 @@
                 </a>
 
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#home" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                    <a href="#home"
+                        class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
                         Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
                     </a>
-                    <a href="#products" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                    <a href="#products"
+                        class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
                         Our Products
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
                     </a>
-                    <a href="#about" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                    <a href="#about"
+                        class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
                         About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
                     </a>
-                    <a href="#contact" class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
+                    <a href="#contact"
+                        class="text-sm font-medium text-nakshatra-dark hover:text-nakshatra-maroon transition-colors relative group">
                         Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-nakshatra-gold transition-all group-hover:w-full"></span>
                     </a>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <button onclick="toggleCart()" class="relative p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
+                    <button onclick="toggleCart()"
+                        class="relative p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
                         <i class="fas fa-shopping-basket text-nakshatra-maroon text-xl"></i>
-                        <span id="cartBadge" class="absolute -top-1 -right-1 w-5 h-5 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold hidden">0</span>
+                        <span id="cartBadge"
+                            class="absolute -top-1 -right-1 w-5 h-5 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold hidden">0</span>
                     </button>
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
+                    <button onclick="toggleMobileMenu()"
+                        class="md:hidden p-2 hover:bg-nakshatra-maroon/10 rounded-full transition-colors">
                         <i class="fas fa-bars text-nakshatra-maroon text-xl"></i>
                     </button>
                 </div>
@@ -327,26 +512,37 @@
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-nakshatra-cream z-50 shadow-2xl p-6">
-        <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 p-2 hover:bg-nakshatra-maroon/10 rounded-full">
+        <button onclick="toggleMobileMenu()"
+            class="absolute top-4 right-4 p-2 hover:bg-nakshatra-maroon/10 rounded-full">
             <i class="fas fa-times text-nakshatra-maroon text-xl"></i>
         </button>
         <div class="mt-12 flex flex-col gap-6">
-            <a href="#home" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Home</a>
-            <a href="#products" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Our Products</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">About Us</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Contact</a>
+            <a href="#home" onclick="toggleMobileMenu()"
+                class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Home</a>
+            <a href="#products" onclick="toggleMobileMenu()"
+                class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Our
+                Products</a>
+            <a href="#about" onclick="toggleMobileMenu()"
+                class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">About
+                Us</a>
+            <a href="#contact" onclick="toggleMobileMenu()"
+                class="text-lg font-playfair text-nakshatra-dark hover:text-nakshatra-maroon transition-colors border-b border-nakshatra-gold/20 pb-2">Contact</a>
         </div>
         <div class="mt-8 p-4 bg-nakshatra-maroon/5 rounded-lg border border-nakshatra-gold/20">
-            <p class="text-sm text-nakshatra-dark/70"><i class="fas fa-phone-alt text-nakshatra-maroon mr-2"></i>+91 62810 10755</p>
-            <p class="text-sm text-nakshatra-dark/70 mt-2"><i class="fas fa-map-marker-alt text-nakshatra-maroon mr-2"></i>Korutla, Telangana</p>
+            <p class="text-sm text-nakshatra-dark/70"><i class="fas fa-phone-alt text-nakshatra-maroon mr-2"></i>+91
+                62810 10755</p>
+            <p class="text-sm text-nakshatra-dark/70 mt-2"><i
+                    class="fas fa-map-marker-alt text-nakshatra-maroon mr-2"></i>Korutla, Telangana</p>
         </div>
     </div>
 
     <!-- Cart Sidebar -->
     <div id="cartOverlay" class="cart-overlay fixed inset-0 bg-black/50 z-50" onclick="toggleCart()"></div>
-    <div id="cartSidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-nakshatra-cream z-50 shadow-2xl flex flex-col">
+    <div id="cartSidebar"
+        class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-nakshatra-cream z-50 shadow-2xl flex flex-col">
         <div class="p-6 border-b border-nakshatra-gold/20 flex items-center justify-between bg-nakshatra-maroon">
-            <h2 class="font-cinzel text-nakshatra-gold text-xl font-bold"><i class="fas fa-shopping-basket mr-2"></i>Your Basket</h2>
+            <h2 class="font-cinzel text-nakshatra-gold text-xl font-bold"><i
+                    class="fas fa-shopping-basket mr-2"></i>Your Basket</h2>
             <button onclick="toggleCart()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
                 <i class="fas fa-times text-nakshatra-cream text-xl"></i>
             </button>
@@ -367,11 +563,13 @@
                 <span class="font-playfair text-lg">Total Amount:</span>
                 <span id="cartTotalPrice" class="font-bold text-nakshatra-maroon text-xl">₹0</span>
             </div>
-            <button onclick="sendWhatsAppOrder()" class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-semibold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
+            <button onclick="openOrderModal()"
+                class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-semibold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
                 <i class="fab fa-whatsapp text-xl"></i>
                 <span>Order on WhatsApp</span>
             </button>
-            <button onclick="clearCart()" class="w-full mt-2 text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
+            <button onclick="clearCart()"
+                class="w-full mt-2 text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
                 Clear Basket
             </button>
         </div>
@@ -379,17 +577,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div class="absolute inset-0 bg-gradient-to-br from-nakshatra-maroon/90 via-nakshatra-maroon/70 to-nakshatra-orange/60 z-0"></div>
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-nakshatra-maroon/90 via-nakshatra-maroon/70 to-nakshatra-orange/60 z-0">
+        </div>
         <div class="absolute inset-0 pattern-bg opacity-30 z-0"></div>
 
         <div class="absolute top-20 left-10 w-32 h-32 border-2 border-nakshatra-gold/20 rounded-full float-anim"></div>
-        <div class="absolute bottom-32 right-16 w-24 h-24 border-2 border-nakshatra-gold/20 rounded-full float-anim-delay"></div>
+        <div
+            class="absolute bottom-32 right-16 w-24 h-24 border-2 border-nakshatra-gold/20 rounded-full float-anim-delay">
+        </div>
         <div class="absolute top-1/3 right-1/4 w-16 h-16 bg-nakshatra-gold/10 rounded-full float-anim-delay2"></div>
 
-        <div class="absolute top-8 left-8 w-20 h-20 border-t-4 border-l-4 border-nakshatra-gold/40 rounded-tl-3xl"></div>
-        <div class="absolute top-8 right-8 w-20 h-20 border-t-4 border-r-4 border-nakshatra-gold/40 rounded-tr-3xl"></div>
-        <div class="absolute bottom-8 left-8 w-20 h-20 border-b-4 border-l-4 border-nakshatra-gold/40 rounded-bl-3xl"></div>
-        <div class="absolute bottom-8 right-8 w-20 h-20 border-b-4 border-r-4 border-nakshatra-gold/40 rounded-br-3xl"></div>
+        <div class="absolute top-8 left-8 w-20 h-20 border-t-4 border-l-4 border-nakshatra-gold/40 rounded-tl-3xl">
+        </div>
+        <div class="absolute top-8 right-8 w-20 h-20 border-t-4 border-r-4 border-nakshatra-gold/40 rounded-tr-3xl">
+        </div>
+        <div class="absolute bottom-8 left-8 w-20 h-20 border-b-4 border-l-4 border-nakshatra-gold/40 rounded-bl-3xl">
+        </div>
+        <div class="absolute bottom-8 right-8 w-20 h-20 border-b-4 border-r-4 border-nakshatra-gold/40 rounded-br-3xl">
+        </div>
 
         <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
             <div class="flex items-center justify-center gap-4 mb-6 reveal">
@@ -398,9 +604,11 @@
                 <div class="h-px w-16 bg-nakshatra-gold/60"></div>
             </div>
 
-            <p class="text-nakshatra-gold font-playfair text-lg sm:text-xl tracking-widest uppercase mb-4 reveal">Welcome to</p>
+            <p class="text-nakshatra-gold font-playfair text-lg sm:text-xl tracking-widest uppercase mb-4 reveal">
+                Welcome to</p>
 
-            <h1 class="font-cinzel text-5xl sm:text-7xl md:text-8xl text-nakshatra-cream font-bold mb-2 text-glow reveal">
+            <h1
+                class="font-cinzel text-5xl sm:text-7xl md:text-8xl text-nakshatra-cream font-bold mb-2 text-glow reveal">
                 Nakshatra
             </h1>
             <h2 class="font-cinzel text-2xl sm:text-3xl md:text-4xl text-nakshatra-gold font-bold mb-6 reveal">
@@ -409,24 +617,32 @@
 
             <div class="flex items-center justify-center gap-3 mb-8 reveal">
                 <span class="h-px w-8 bg-nakshatra-gold/40"></span>
-                <p class="text-nakshatra-cream/90 font-playfair italic text-lg sm:text-xl">Pure &bull; Homestyle &bull; Authentic Taste</p>
+                <p class="text-nakshatra-cream/90 font-playfair italic text-lg sm:text-xl">Pure &bull; Homestyle &bull;
+                    Authentic Taste</p>
                 <span class="h-px w-8 bg-nakshatra-gold/40"></span>
             </div>
 
             <p class="text-nakshatra-cream/70 max-w-2xl mx-auto mb-10 text-sm sm:text-base leading-relaxed reveal">
-                Experience the rich flavors of traditional pickles and homemade delicacies, 
-                crafted with love and authentic recipes passed down through generations. 
+                Experience the rich flavors of traditional pickles and homemade delicacies,
+                crafted with love and authentic recipes passed down through generations.
                 100% homemade with no artificial preservatives.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
-                <a href="#products" class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg hover:shadow-nakshatra-gold/30 flex items-center justify-center gap-2">
+                <a href="#products"
+                    class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg hover:shadow-nakshatra-gold/30 flex items-center justify-center gap-2">
                     <i class="fas fa-utensils"></i>
                     Explore Our Menu
                 </a>
-                <a href="https://wa.me/916281010755" target="_blank" class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg flex items-center justify-center gap-2">
+                <a href="https://wa.me/916281010755"
+                    class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg flex items-center justify-center gap-2">
                     <i class="fab fa-whatsapp text-xl"></i>
                     Chat on WhatsApp
+                </a>
+                <a href="https://instagram.com/nakshatrapicklesssssss"
+                    class="instagram-btn font-bold py-4 px-8 rounded-full btn-shine transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i class="fab fa-instagram text-xl"></i>
+                    Follow on Instagram
                 </a>
             </div>
 
@@ -466,7 +682,8 @@
                     <div class="h-px w-12 bg-nakshatra-maroon/30"></div>
                 </div>
                 <h2 class="font-cinzel text-4xl sm:text-5xl text-nakshatra-maroon font-bold mb-3">Our Menu</h2>
-                <p class="font-playfair text-nakshatra-dark/60 text-lg italic">Handcrafted with tradition, served with love</p>
+                <p class="font-playfair text-nakshatra-dark/60 text-lg italic">Handcrafted with tradition, served with
+                    love</p>
             </div>
 
             <!-- LIVE CART PREVIEW - Always Visible -->
@@ -477,16 +694,20 @@
                             <i class="fas fa-shopping-basket text-nakshatra-gold"></i>
                             Your Basket So Far
                         </h3>
-                        <span id="previewItemCount" class="bg-nakshatra-maroon text-white text-xs font-bold px-3 py-1 rounded-full">0 items</span>
+                        <span id="previewItemCount"
+                            class="bg-nakshatra-maroon text-white text-xs font-bold px-3 py-1 rounded-full">0
+                            items</span>
                     </div>
                     <div id="cartPreviewItems" class="space-y-2 max-h-48 overflow-y-auto">
                         <!-- Preview items injected here -->
                     </div>
                     <div class="mt-4 pt-3 border-t border-nakshatra-gold/20 flex items-center justify-between">
-                        <button onclick="clearCart()" class="text-sm text-nakshatra-maroon/60 hover:text-nakshatra-maroon transition-colors">
+                        <button onclick="clearCart()"
+                            class="text-sm text-nakshatra-maroon/60 hover:text-nakshatra-maroon transition-colors">
                             <i class="fas fa-trash-alt mr-1"></i>Clear All
                         </button>
-                        <button onclick="sendWhatsAppOrder()" class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white text-sm font-semibold py-2 px-6 rounded-lg btn-shine transition-all flex items-center gap-2">
+                        <button onclick="openOrderModal()"
+                            class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white text-sm font-semibold py-2 px-6 rounded-lg btn-shine transition-all flex items-center gap-2">
                             <i class="fab fa-whatsapp"></i>Order Now
                         </button>
                     </div>
@@ -495,19 +716,29 @@
 
             <!-- Category Tabs -->
             <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
-                <button onclick="filterCategory('all')" class="cat-tab active px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="all">
+                <button onclick="filterCategory('all')"
+                    class="cat-tab active px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all"
+                    data-cat="all">
                     All Items
                 </button>
-                <button onclick="filterCategory('veg')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="veg">
+                <button onclick="filterCategory('veg')"
+                    class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all"
+                    data-cat="veg">
                     <i class="fas fa-leaf mr-1"></i> Veg Pickles
                 </button>
-                <button onclick="filterCategory('nonveg')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="nonveg">
+                <button onclick="filterCategory('nonveg')"
+                    class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all"
+                    data-cat="nonveg">
                     <i class="fas fa-drumstick-bite mr-1"></i> Non-Veg
                 </button>
-                <button onclick="filterCategory('snacks')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="snacks">
+                <button onclick="filterCategory('snacks')"
+                    class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all"
+                    data-cat="snacks">
                     <i class="fas fa-cookie mr-1"></i> Snacks
                 </button>
-                <button onclick="filterCategory('sweets')" class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all" data-cat="sweets">
+                <button onclick="filterCategory('sweets')"
+                    class="cat-tab px-6 py-2.5 rounded-full border-2 border-nakshatra-maroon text-sm font-semibold transition-all"
+                    data-cat="sweets">
                     <i class="fas fa-candy-cane mr-1"></i> Sweets
                 </button>
             </div>
@@ -537,17 +768,17 @@
                             "Every jar tells a story of tradition, care, and authentic flavors."
                         </p>
                         <p>
-                            At Nakshatra Pickles & Home Foods, we believe that the best flavors come from the heart. 
-                            Every jar of pickle, every batch of sweets, and every pack of snacks is prepared using 
+                            At Nakshatra Pickles & Home Foods, we believe that the best flavors come from the heart.
+                            Every jar of pickle, every batch of sweets, and every pack of snacks is prepared using
                             time-honored recipes passed down through generations.
                         </p>
                         <p>
-                            We use only the freshest ingredients sourced from local markets, combined with 
-                            traditional spices ground at home. Our commitment to quality means <strong>absolutely no 
-                            artificial preservatives</strong> — just pure, homestyle goodness.
+                            We use only the freshest ingredients sourced from local markets, combined with
+                            traditional spices ground at home. Our commitment to quality means <strong>absolutely no
+                                artificial preservatives</strong> — just pure, homestyle goodness.
                         </p>
                         <p>
-                            From the fiery Avakaya mango pickle to the delicate sweetness of Ariselu, 
+                            From the fiery Avakaya mango pickle to the delicate sweetness of Ariselu,
                             every product tells a story of tradition, care, and authentic Telugu cuisine.
                         </p>
                     </div>
@@ -581,21 +812,26 @@
 
                         <div class="grid grid-cols-2 gap-3">
                             <div class="img-zoom rounded-lg overflow-hidden aspect-square">
-                                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=400&fit=crop" alt="Pickles" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=400&fit=crop"
+                                    alt="Pickles" class="w-full h-full object-cover">
                             </div>
                             <div class="img-zoom rounded-lg overflow-hidden aspect-square">
-                                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop" alt="Spices" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop"
+                                    alt="Spices" class="w-full h-full object-cover">
                             </div>
                             <div class="img-zoom rounded-lg overflow-hidden aspect-square">
-                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop" alt="Sweets" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop"
+                                    alt="Sweets" class="w-full h-full object-cover">
                             </div>
                             <div class="img-zoom rounded-lg overflow-hidden aspect-square">
-                                <img src="https://images.unsplash.com/photo-1626202158822-1c1d5c7c5b1c?w=400&h=400&fit=crop" alt="Traditional" class="w-full h-full object-cover">
+                                <img src="https://images.unsplash.com/photo-1626202158822-1c1d5c7c5b1c?w=400&h=400&fit=crop"
+                                    alt="Traditional" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
 
-                    <div class="absolute -bottom-6 -left-6 bg-nakshatra-maroon text-nakshatra-cream p-4 rounded-lg shadow-xl float-anim">
+                    <div
+                        class="absolute -bottom-6 -left-6 bg-nakshatra-maroon text-nakshatra-cream p-4 rounded-lg shadow-xl float-anim">
                         <p class="font-cinzel font-bold text-lg">Since 2019</p>
                         <p class="text-xs text-nakshatra-gold">Serving Authentic Taste</p>
                     </div>
@@ -609,8 +845,11 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-4 bg-nakshatra-maroon relative overflow-hidden">
         <div class="absolute inset-0 pattern-bg opacity-10"></div>
-        <div class="absolute top-0 left-0 w-64 h-64 bg-nakshatra-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-nakshatra-gold/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+        <div class="absolute top-0 left-0 w-64 h-64 bg-nakshatra-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-nakshatra-gold/5 rounded-full translate-x-1/3 translate-y-1/3">
+        </div>
 
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-12 reveal">
@@ -625,8 +864,10 @@
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
                 <!-- WhatsApp Card -->
-                <a href="https://wa.me/916281010755" target="_blank" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-nakshatra-green rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <a href="https://wa.me/916281010755"
+                    class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 bg-nakshatra-green rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="fab fa-whatsapp text-white text-2xl"></i>
                     </div>
                     <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">WhatsApp</h3>
@@ -635,8 +876,10 @@
                 </a>
 
                 <!-- Phone Card -->
-                <a href="tel:+916281010755" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-nakshatra-orange rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <a href="tel:+916281010755"
+                    class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-14 h-14 bg-nakshatra-orange rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="fas fa-phone-alt text-white text-xl"></i>
                     </div>
                     <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">Call Us</h3>
@@ -645,8 +888,10 @@
                 </a>
 
                 <!-- Location Card -->
-                <a href="https://maps.google.com/?q=Korutla,Jhansi+Road,Telangana" target="_blank" class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
-                    <div class="w-14 h-14 bg-nakshatra-maroon border-2 border-nakshatra-gold rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <a href="https://maps.google.com/?q=Korutla,Jhansi+Road,Telangana"
+                    class="group bg-white/10 backdrop-blur-sm border border-nakshatra-gold/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+                    <div
+                        class="w-14 h-14 bg-nakshatra-maroon border-2 border-nakshatra-gold rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <i class="fas fa-map-marker-alt text-nakshatra-gold text-xl"></i>
                     </div>
                     <h3 class="font-cinzel text-nakshatra-gold font-bold text-lg mb-1">Visit Us</h3>
@@ -659,14 +904,18 @@
 
             <!-- Quick Order CTA -->
             <div class="mt-12 text-center reveal">
-                <div class="bg-white/5 backdrop-blur-sm border border-nakshatra-gold/30 rounded-2xl p-8 max-w-2xl mx-auto">
+                <div
+                    class="bg-white/5 backdrop-blur-sm border border-nakshatra-gold/30 rounded-2xl p-8 max-w-2xl mx-auto">
                     <h3 class="font-cinzel text-2xl text-nakshatra-gold font-bold mb-3">Ready to Order?</h3>
-                    <p class="text-nakshatra-cream/70 mb-6">Browse our products, add them to your basket, and send your order via WhatsApp with a single click!</p>
+                    <p class="text-nakshatra-cream/70 mb-6">Browse our products, add them to your basket, and send your
+                        order via WhatsApp with a single click!</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#products" class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
+                        <a href="#products"
+                            class="bg-nakshatra-gold hover:bg-nakshatra-gold/90 text-nakshatra-maroon font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
                             <i class="fas fa-utensils mr-2"></i>Browse Products
                         </a>
-                        <a href="https://wa.me/916281010755?text=Hi! I would like to place an order from Nakshatra Pickles." target="_blank" class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
+                        <a href="https://wa.me/916281010755?text=Hi! I would like to place an order from Nakshatra Pickles."
+                            class="bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-3 px-8 rounded-full btn-shine transition-all shadow-lg">
                             <i class="fab fa-whatsapp mr-2"></i>Quick Order
                         </a>
                     </div>
@@ -683,56 +932,148 @@
                 <p class="text-sm mt-1">Pure &bull; Homestyle &bull; Authentic Taste</p>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://wa.me/916281010755" target="_blank" class="w-10 h-10 bg-nakshatra-green/20 hover:bg-nakshatra-green rounded-full flex items-center justify-center transition-all hover:scale-110">
+                <a href="https://wa.me/916281010755"
+                    class="w-10 h-10 bg-nakshatra-green/20 hover:bg-nakshatra-green rounded-full flex items-center justify-center transition-all hover:scale-110">
                     <i class="fab fa-whatsapp text-nakshatra-green hover:text-white transition-colors"></i>
                 </a>
-                <a href="tel:+916281010755" class="w-10 h-10 bg-nakshatra-orange/20 hover:bg-nakshatra-orange rounded-full flex items-center justify-center transition-all hover:scale-110">
+                <a href="tel:+916281010755"
+                    class="w-10 h-10 bg-nakshatra-orange/20 hover:bg-nakshatra-orange rounded-full flex items-center justify-center transition-all hover:scale-110">
                     <i class="fas fa-phone text-nakshatra-orange hover:text-white transition-colors"></i>
+                </a>
+                <a href="https://instagram.com/https://instagram.com/nakshatrapicklesssssss"
+                    class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    style="background:linear-gradient(45deg,#405DE6,#833AB4,#C13584,#E1306C,#FD1D1D,#FCAF45);">
+                    <i class="fab fa-instagram text-white"></i>
                 </a>
             </div>
             <p class="text-xs text-nakshatra-cream/40 text-center sm:text-right">
                 100% Homemade &bull; No Artificial Preservatives<br>
-                <span class="text-nakshatra-gold/60">Made with <i class="fas fa-heart text-nakshatra-maroon"></i> in Korutla</span>
+                <span class="text-nakshatra-gold/60">Made with <i class="fas fa-heart text-nakshatra-maroon"></i> in
+                    Korutla</span>
             </p>
         </div>
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast fixed bottom-6 right-6 bg-nakshatra-maroon text-nakshatra-cream px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 border border-nakshatra-gold/30">
+    <div id="toast"
+        class="toast fixed bottom-6 right-6 bg-nakshatra-maroon text-nakshatra-cream px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 border border-nakshatra-gold/30">
         <i class="fas fa-check-circle text-nakshatra-gold text-xl"></i>
         <div>
             <p id="toastTitle" class="font-semibold text-sm">Added to basket!</p>
             <p id="toastMsg" class="text-xs text-nakshatra-cream/70">Item added successfully</p>
         </div>
     </div>
-
+<!-- Order Form Modal -->
+<div id="orderModal" class="fixed inset-0 z-[60] hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeOrderModal()"></div>
+    
+    <!-- Modal Content -->
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="bg-nakshatra-cream rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto relative border-2 border-nakshatra-gold/30">
+            <!-- Close button -->
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 w-8 h-8 bg-nakshatra-maroon/10 hover:bg-nakshatra-maroon hover:text-white rounded-full flex items-center justify-center transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Header -->
+            <div class="p-6 border-b border-nakshatra-gold/20">
+                <h3 class="font-cinzel text-nakshatra-maroon text-xl font-bold text-center">
+                    <i class="fas fa-clipboard-list text-nakshatra-gold mr-2"></i>Place Your Order
+                </h3>
+                <p class="text-center text-nakshatra-dark/50 text-sm mt-1">Fill in your details below</p>
+            </div>
+            
+            <!-- Form -->
+            <form id="orderForm" onsubmit="submitOrder(event)" class="p-6 space-y-4">
+                <!-- Name -->
+                <div>
+                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Full Name <span class="text-nakshatra-maroon">*</span></label>
+                    <input type="text" id="orderName" required minlength="2" maxlength="50"
+                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
+                        placeholder="Enter your name">
+                </div>
+                
+                <!-- Phone -->
+                <div>
+                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Phone Number <span class="text-nakshatra-maroon">*</span></label>
+                    <input type="tel" id="orderPhone" required pattern="[0-9]{10}" maxlength="10"
+                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
+                        placeholder="10-digit mobile number">
+                    <p class="text-xs text-nakshatra-dark/40 mt-1">We'll contact you on this number</p>
+                </div>
+                
+                <!-- Address -->
+                <div>
+                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Delivery Address <span class="text-nakshatra-maroon">*</span></label>
+                    <textarea id="orderAddress" required minlength="3" rows="3"
+                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all resize-none"
+                        placeholder="Enter your full address or type 'pickup'"></textarea>
+                </div>
+                
+                <!-- Order Summary Preview -->
+                <div class="bg-nakshatra-maroon/5 rounded-lg p-4 border border-nakshatra-gold/20">
+                    <h4 class="font-cinzel text-nakshatra-maroon font-bold text-sm mb-2">Order Summary</h4>
+                    <div id="orderSummaryItems" class="space-y-1 text-sm text-nakshatra-dark/70 max-h-32 overflow-y-auto">
+                        <!-- Items injected via JS -->
+                    </div>
+                    <div class="border-t border-nakshatra-gold/20 mt-2 pt-2 flex justify-between items-center">
+                        <span class="font-semibold text-nakshatra-dark">Total:</span>
+                        <span id="orderSummaryTotal" class="font-bold text-nakshatra-maroon text-lg">₹0</span>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span>Confirm & Order on WhatsApp</span>
+                </button>
+                
+                <button type="button" onclick="closeOrderModal()"
+                    class="w-full text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Floating Basket Button -->
+<button id="floatingBasket" onclick="toggleCart()" 
+    class="fixed bottom-6 right-6 z-40 bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-nakshatra-maroon/30 group hidden">
+    <div class="relative">
+        <i class="fas fa-shopping-basket text-2xl group-hover:rotate-12 transition-transform"></i>
+        <span id="floatingBadge"
+            class="absolute -top-3 -right-3 w-6 h-6 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold border-2 border-nakshatra-cream">0</span>
+    </div>
+</button>
     <script>
         const SUPABASE_URL = 'https://lstmvrrqfrlyxcdboybt.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_mFOFSrzXkxvj1Sk30hm3-A_ouIhkUsy';
-const { createClient } = supabase;
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const SUPABASE_KEY = 'sb_publishable_mFOFSrzXkxvj1Sk30hm3-A_ouIhkUsy';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let products = [];
-let cart = [];
-let currentCategory = 'all';
-let selectedSizes = {};
+        let products = [];
+        let cart = [];
+        let currentCategory = 'all';
+        let selectedSizes = {};
 
-async function loadProducts() {
-    const { data, error } = await supabaseClient
-        .from('products')
-        .select('*')
-        .eq('active', true)
-        .order('name');
+        async function loadProducts() {
+            const { data, error } = await supabaseClient
+                .from('products')
+                .select('*')
+                .eq('active', true)
+                .order('name');
 
-    if (error) {
-        console.error('Failed to load products:', error);
-        showToast('Error', 'Could not load products');
-        return;
-    }
+            if (error) {
+                console.error('Failed to load products:', error);
+                showToast('Error', 'Could not load products');
+                return;
+            }
 
-    products = data || [];
-    renderProducts();
-}
+            products = data || [];
+            renderProducts();
+        }
 
 
         // ===== INIT =====
@@ -777,7 +1118,7 @@ async function loadProducts() {
             if (saved) {
                 try {
                     cart = JSON.parse(saved);
-                } catch(e) {
+                } catch (e) {
                     cart = [];
                 }
             }
@@ -926,55 +1267,55 @@ async function loadProducts() {
                 document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
             }, 100);
         }
-// ===== RENDER PRODUCTS =====
-function renderProducts() {
-    const grid = document.getElementById('productsGrid');
-    if (!grid) return;
+        // ===== RENDER PRODUCTS =====
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
 
-    let filtered = currentCategory === 'all'
-        ? products
-        : products.filter(p => p.category === currentCategory);
+            let filtered = currentCategory === 'all'
+                ? products
+                : products.filter(p => p.category === currentCategory);
 
-    if (filtered.length === 0) {
-        grid.innerHTML = `
+            if (filtered.length === 0) {
+                grid.innerHTML = `
             <div class="col-span-full text-center py-16">
                 <i class="fas fa-basket-shopping text-4xl text-nakshatra-dark/20 mb-4"></i>
                 <p class="text-nakshatra-dark/50 font-playfair">No products available in this category.</p>
             </div>
         `;
-        return;
-    }
+                return;
+            }
 
-    grid.innerHTML = filtered.map(product => {
-        if (!product.prices || typeof product.prices !== 'object') return '';
-        const sizes = Object.keys(product.prices);
-        if (sizes.length === 0) return '';
-        const defaultSize = sizes[0];
-        if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
-        const currentSize = selectedSizes[product.id];
-        const price = product.prices[currentSize];
+            grid.innerHTML = filtered.map(product => {
+                if (!product.prices || typeof product.prices !== 'object') return '';
+                const sizes = Object.keys(product.prices);
+                if (sizes.length === 0) return '';
+                const defaultSize = sizes[0];
+                if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
+                const currentSize = selectedSizes[product.id];
+                const price = product.prices[currentSize];
 
-        const sizeButtons = sizes.map(size => `
+                const sizeButtons = sizes.map(size => `
             <button onclick="selectSize('${product.id}', '${size}', event)" 
                 class="px-2 py-1 text-xs rounded-md border transition-all ${currentSize === size ? 'bg-nakshatra-maroon text-white border-nakshatra-maroon' : 'bg-white text-nakshatra-dark/70 border-nakshatra-gold/30 hover:border-nakshatra-maroon'}">
                 ${size}
             </button>
         `).join('');
 
-        // Updated color object mapping keys directly to your database strings
-        const categoryColors = {
-            'Veg Pickles': 'bg-nakshatra-green/10 text-nakshatra-green border-nakshatra-green/20',
-            'Non-Veg': 'bg-nakshatra-maroon/10 text-nakshatra-maroon border-nakshatra-maroon/20',
-            'Snacks': 'bg-nakshatra-orange/10 text-nakshatra-orange border-nakshatra-orange/20',
-            'Sweets': 'bg-purple-100 text-purple-700 border-purple-200'
-        };
+                // Updated color object mapping keys directly to your database strings
+                const categoryColors = {
+                    'Veg Pickles': 'bg-nakshatra-green/10 text-nakshatra-green border-nakshatra-green/20',
+                    'Non-Veg': 'bg-nakshatra-maroon/10 text-nakshatra-maroon border-nakshatra-maroon/20',
+                    'Snacks': 'bg-nakshatra-orange/10 text-nakshatra-orange border-nakshatra-orange/20',
+                    'Sweets': 'bg-purple-100 text-purple-700 border-purple-200'
+                };
 
-        // Check if item is already in cart
-        const inCart = cart.filter(item => item.id === product.id);
-        const cartQty = inCart.reduce((sum, item) => sum + item.qty, 0);
-        const cartBadge = cartQty > 0 ? `<div class="absolute top-3 left-3 bg-nakshatra-orange text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">${cartQty} in basket</div>` : '';
+                // Check if item is already in cart
+                const inCart = cart.filter(item => item.id === product.id);
+                const cartQty = inCart.reduce((sum, item) => sum + item.qty, 0);
+                const cartBadge = cartQty > 0 ? `<div class="absolute top-3 left-3 bg-nakshatra-orange text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">${cartQty} in basket</div>` : '';
 
-        return `
+                return `
             <div class="product-card bg-white rounded-xl overflow-hidden border border-nakshatra-gold/10 shadow-md reveal">
                 <div class="relative h-48 overflow-hidden">
                     <img src="${product.image || 'https://via.placeholder.com/400?text=No+Image'}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
@@ -1010,36 +1351,36 @@ function renderProducts() {
                 </div>
             </div>
         `;
-    }).join('');
+            }).join('');
 
-    setTimeout(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+            setTimeout(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('active');
+                    });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
+            }, 100);
+        }
+
+        // ===== FILTER CATEGORY =====
+        function filterCategory(cat) {
+            // Maps short HTML selection tokens back to actual database values
+            const filterMap = {
+                'all': 'all',
+                'veg': 'Veg Pickles',
+                'nonveg': 'Non-Veg',
+                'snacks': 'Snacks',
+                'sweets': 'Sweets'
+            };
+
+            currentCategory = filterMap[cat];
+
+            document.querySelectorAll('.cat-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.cat === cat);
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
-    }, 100);
-}
-
-// ===== FILTER CATEGORY =====
-function filterCategory(cat) {
-    // Maps short HTML selection tokens back to actual database values
-    const filterMap = {
-        'all': 'all',
-        'veg': 'Veg Pickles',
-        'nonveg': 'Non-Veg',
-        'snacks': 'Snacks',
-        'sweets': 'Sweets'
-    };
-    
-    currentCategory = filterMap[cat];
-    
-    document.querySelectorAll('.cat-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.cat === cat);
-    });
-    renderProducts();
-}
+            renderProducts();
+        }
 
         // ===== SELECT SIZE =====
         function selectSize(productId, size, event) {
@@ -1071,14 +1412,22 @@ function filterCategory(cat) {
 
             saveCart();
             updateCartUI();
-            renderProducts(); // Re-render to show cart badges on cards
+            renderProducts();
+
             showToast('Added to basket!', `${product.name} (${size}) added`);
 
             const badge = document.getElementById('cartBadge');
             badge.classList.add('cart-bounce');
             setTimeout(() => badge.classList.remove('cart-bounce'), 300);
-        }
 
+            // Open cart drawer
+            const sidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('cartOverlay');
+
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
         function removeFromCart(index) {
             cart.splice(index, 1);
             saveCart();
@@ -1184,6 +1533,7 @@ function filterCategory(cat) {
                 footer.classList.add('hidden');
                 itemsContainer.innerHTML = '';
             }
+            updateFloatingBasket();
         }
 
         // ===== TOGGLE CART =====
@@ -1201,70 +1551,8 @@ function filterCategory(cat) {
             menu.classList.toggle('open');
             document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
         }
-
-        // ===== WHATSAPP ORDER =====
-        async function sendWhatsAppOrder() {
-    if (cart.length === 0) {
-        showToast('Basket is empty!', 'Add some items first');
-        return;
-    }
-
-    const name = prompt('Your name:');
-    if (!name || name.trim().length < 2) {
-        showToast('Invalid Name', 'Please enter your name (at least 2 characters)');
-        return;
-    }
-    const phone = prompt('Your phone number (10 digits):');
-    if (!phone || !/^[0-9]{10}$/.test(phone)) {
-        showToast('Invalid Phone', 'Please enter a valid 10-digit phone number');
-        return;
-    }
-    const address = prompt('Delivery address (or type "pickup"):');
-    if (!address || address.trim().length < 3) {
-        showToast('Invalid Address', 'Please enter a valid address or type "pickup"');
-        return;
-    }
-
-    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-
-    // Save order to Supabase
-    const { error } = await supabaseClient.from('orders').insert({
-        customer_name: name,
-        phone: phone,
-        address: address,
-        items: cart,
-        total: total,
-        status: 'pending'
-    });
-
-    if (error) {
-        console.error('Order save failed:', error);
-        showToast('Warning', 'Order could not be saved to records, but WhatsApp will still open.');
-    } else {
-        showToast('Order recorded!', 'Saved successfully');
-    }
-
-    // Build WhatsApp message
-    let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
-    message += `*Customer:* ${name}\n`;
-    message += `*Phone:* ${phone}\n`;
-    message += `*Address:* ${address}\n\n`;
-    message += "Hello! I would like to place an order:\n\n";
-
-    cart.forEach((item, idx) => {
-        const itemTotal = item.price * item.qty;
-        message += `${idx + 1}. *${item.name}*\n`;
-        message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
-    });
-
-    message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
-    message += `*Estimated Total: ₹${total}*\n\n`;
-    message += "Please confirm availability and share payment details.\nThank you! 🙏";
-
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
-}
-         // ===== TOAST =====
+        
+        // ===== TOAST =====
         function showToast(title, msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toastTitle').textContent = title;
@@ -1273,6 +1561,131 @@ function filterCategory(cat) {
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
+    // Open the order form modal
+function openOrderModal() {
+    if (cart.length === 0) {
+        showToast('Basket is empty!', 'Add some items first');
+        return;
+    }
+    
+    // Populate order summary
+    const summaryItems = document.getElementById('orderSummaryItems');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    
+    summaryItems.innerHTML = cart.map(item => `
+        <div class="flex justify-between">
+            <span>${item.name} (${item.size}) × ${item.qty}</span>
+            <span class="font-medium">₹${item.price * item.qty}</span>
+        </div>
+    `).join('');
+    
+    document.getElementById('orderSummaryTotal').textContent = '₹' + total;
+    
+    // Show modal
+    const modal = document.getElementById('orderModal');
+    modal.classList.remove('hidden');
+    // Small delay to allow display:block to apply before opacity transition
+    setTimeout(() => modal.classList.add('open'), 10);
+    document.body.style.overflow = 'hidden';
+}
+
+// Close the order form modal
+function closeOrderModal() {
+    const modal = document.getElementById('orderModal');
+    modal.classList.remove('open');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        document.getElementById('orderForm').reset();
+    }, 300);
+    document.body.style.overflow = '';
+}
+
+// Handle form submission
+async function submitOrder(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('orderName').value.trim();
+    const phone = document.getElementById('orderPhone').value.trim();
+    const address = document.getElementById('orderAddress').value.trim();
+    
+    // Validation (same rules as before)
+    if (name.length < 2) {
+        showToast('Invalid Name', 'Please enter at least 2 characters');
+        return;
+    }
+    if (!/^[0-9]{10}$/.test(phone)) {
+        showToast('Invalid Phone', 'Please enter a valid 10-digit number');
+        return;
+    }
+    if (address.length < 3) {
+        showToast('Invalid Address', 'Please enter a valid address or type "pickup"');
+        return;
+    }
+    
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    
+    // Save to Supabase
+    const { error } = await supabaseClient.from('orders').insert({
+        customer_name: name,
+        phone: phone,
+        address: address,
+        items: cart,
+        total: total,
+        status: 'pending'
+    });
+    
+    if (error) {
+        console.error('Order save failed:', error);
+        showToast('Warning', 'Order could not be saved, but WhatsApp will still open.');
+    } else {
+        showToast('Order recorded!', 'Saved successfully');
+    }
+    
+    // Build WhatsApp message (same as before)
+    let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
+    message += `*Customer:* ${name}\n`;
+    message += `*Phone:* ${phone}\n`;
+    message += `*Address:* ${address}\n\n`;
+    message += "Hello! I would like to place an order:\n\n";
+    
+    cart.forEach((item, idx) => {
+        const itemTotal = item.price * item.qty;
+        message += `${idx + 1}. *${item.name}*\n`;
+        message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
+    });
+    
+    message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
+    message += `*Estimated Total: ₹${total}*\n\n`;
+    message += "Please confirm availability and share payment details.\nThank you! 🙏";
+    
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
+    
+    // Close modal and clear cart
+    closeOrderModal();
+    cart = [];
+    saveCart();
+    updateCartUI();
+    renderProducts();
+}
+// ===== FLOATING BASKET =====
+function updateFloatingBasket() {
+    const floatingBtn = document.getElementById('floatingBasket');
+    const floatingBadge = document.getElementById('floatingBadge');
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    
+    if (totalQty > 0) {
+        floatingBtn.classList.remove('hidden');
+        floatingBadge.textContent = totalQty;
+    } else {
+        floatingBtn.classList.add('hidden');
+    }
+}
+
+// Also add this call inside your existing updateCartUI() function
+// Add this line at the very end of updateCartUI():
+updateFloatingBasket();
     </script>
 </body>
+
 </html>
