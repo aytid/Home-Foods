@@ -1736,13 +1736,8 @@
             const floatingBtn = document.getElementById('floatingBasket');
             const floatingBadge = document.getElementById('floatingBadge');
             const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-
-            if (totalQty > 0) {
-                floatingBtn.classList.remove('hidden');
-                floatingBadge.textContent = totalQty;
-            } else {
-                floatingBtn.classList.add('hidden');
-            }
+            floatingBtn.classList.remove('hidden');
+            floatingBadge.textContent = totalQty;
         }
         function showSuccessModal(orderNumber) {
 
