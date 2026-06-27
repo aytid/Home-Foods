@@ -1047,6 +1047,55 @@
             class="absolute -top-3 -right-3 w-6 h-6 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold border-2 border-nakshatra-cream">0</span>
     </div>
 </button>
+<div id="successModal"
+     class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+
+    <div class="bg-white rounded-2xl p-8 max-w-md w-[90%] text-center">
+
+        <div class="text-6xl mb-4">🎉</div>
+
+        <h2 class="text-2xl font-bold text-green-600">
+            Thank You!
+        </h2>
+
+        <p class="mt-3 text-gray-600">
+            Your order request has been received.
+        </p>
+
+        <div class="bg-gray-100 rounded-xl p-4 mt-5">
+
+            <p class="text-sm text-gray-500">
+                Order Number
+            </p>
+
+            <h3 id="successOrderNumber"
+                class="text-xl font-bold text-nakshatra-maroon">
+            </h3>
+
+            <p class="mt-2">
+                Status:
+                <span class="text-orange-600 font-semibold">
+                    Pending
+                </span>
+            </p>
+
+        </div>
+
+        <p class="text-sm text-gray-500 mt-5">
+            We will verify your order and contact you shortly on WhatsApp with confirmation and payment details.
+        </p>
+
+        <button
+            onclick="closeSuccessModal()"
+            class="mt-6 w-full bg-nakshatra-green text-white py-3 rounded-lg">
+
+            Continue Shopping
+
+        </button>
+
+    </div>
+
+</div>
     <script>
         const SUPABASE_URL = 'https://lstmvrrqfrlyxcdboybt.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_mFOFSrzXkxvj1Sk30hm3-A_ouIhkUsy';
@@ -1625,14 +1674,18 @@ async function submitOrder(event) {
     const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
     
     // Save to Supabase
-    const { error } = await supabaseClient.from('orders').insert({
+const { data, error } = await supabaseClient
+    .from('orders')
+    .insert({
         customer_name: name,
         phone: phone,
         address: address,
         items: cart,
         total: total,
         status: 'pending'
-    });
+    })
+    .select()
+    .single();
     
     if (error) {
         console.error('Order save failed:', error);
@@ -1642,24 +1695,25 @@ async function submitOrder(event) {
     }
     
     // Build WhatsApp message (same as before)
-    let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
-    message += `*Customer:* ${name}\n`;
-    message += `*Phone:* ${phone}\n`;
-    message += `*Address:* ${address}\n\n`;
-    message += "Hello! I would like to place an order:\n\n";
+    // let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
+    // message += `*Customer:* ${name}\n`;
+    // message += `*Phone:* ${phone}\n`;
+    // message += `*Address:* ${address}\n\n`;
+    // message += "Hello! I would like to place an order:\n\n";
     
-    cart.forEach((item, idx) => {
-        const itemTotal = item.price * item.qty;
-        message += `${idx + 1}. *${item.name}*\n`;
-        message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
-    });
+    // cart.forEach((item, idx) => {
+    //     const itemTotal = item.price * item.qty;
+    //     message += `${idx + 1}. *${item.name}*\n`;
+    //     message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
+    // });
     
-    message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
-    message += `*Estimated Total: ₹${total}*\n\n`;
-    message += "Please confirm availability and share payment details.\nThank you! 🙏";
+    // message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
+    // message += `*Estimated Total: ₹${total}*\n\n`;
+    // message += "Please confirm availability and share payment details.\nThank you! 🙏";
     
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
+    // const encoded = encodeURIComponent(message);
+    // window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
+    showSuccessModal(data.order_number);
     
     // Close modal and clear cart
     closeOrderModal();
@@ -1681,9 +1735,25 @@ function updateFloatingBasket() {
         floatingBtn.classList.add('hidden');
     }
 }
+function showSuccessModal(orderNumber) {
 
-// Also add this call inside your existing updateCartUI() function
-// Add this line at the very end of updateCartUI():
+    document.getElementById("successOrderNumber").innerText = orderNumber;
+
+    const modal = document.getElementById("successModal");
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
+}
+
+function closeSuccessModal() {
+
+    const modal = document.getElementById("successModal");
+
+    modal.classList.add("hidden");
+
+    modal.classList.remove("flex");
+}
 updateFloatingBasket();
     </script>
 </body>
