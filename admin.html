@@ -1,5 +1,4 @@
-
-html_content = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,6 +79,187 @@ html_content = '''<!DOCTYPE html>
         .product-row:hover { background: rgba(201, 162, 39, 0.05); }
         .mobile-menu-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
+        /* ===== MOBILE RESPONSIVE OVERRIDES ===== */
+
+/* Hide charts on mobile */
+@media (max-width: 768px) {
+    .chart-container { display: none; }
+    #tab-analytics .chart-container { display: block; height: 200px; }
+}
+
+/* Mobile Cards for Tables */
+.mobile-card {
+    display: none;
+}
+@media (max-width: 768px) {
+    .desktop-table { display: none; }
+    .mobile-card {
+        display: block;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid rgba(201, 162, 39, 0.15);
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 8px rgba(107, 26, 26, 0.05);
+    }
+    .mobile-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s;
+    }
+}
+
+/* Bottom Sheet Modals on Mobile */
+@media (max-width: 640px) {
+    .modal .modal-content {
+        width: 100%;
+        max-width: 100%;
+        min-height: 60vh;
+        max-height: 90vh;
+        border-radius: 20px 20px 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .modal.open .modal-content {
+        transform: translateY(0);
+    }
+    /* Override the scale transform for mobile */
+    .modal.open .modal-content {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Touch-friendly buttons */
+@media (max-width: 768px) {
+    button, 
+    .sidebar-link,
+    .cat-tab,
+    .status-badge,
+    input, 
+    select, 
+    textarea {
+        min-height: 44px;
+    }
+    .qty-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Sticky action bar for mobile */
+.mobile-sticky-actions {
+    display: none;
+}
+@media (max-width: 768px) {
+    .mobile-sticky-actions {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid rgba(201, 162, 39, 0.2);
+        padding: 12px 16px;
+        gap: 12px;
+        z-index: 40;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+    /* Add padding to main so content isn't hidden behind sticky bar */
+    main {
+        padding-bottom: 80px;
+    }
+}
+
+/* Better mobile sidebar */
+@media (max-width: 1023px) {
+    #sidebar {
+        width: 280px;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+    }
+}
+
+/* Mobile-optimized stats */
+@media (max-width: 640px) {
+    .revenue-card, .orders-card, .pending-card, .profit-card {
+        padding: 16px;
+    }
+    .revenue-card p.text-xl, .orders-card p.text-xl, 
+    .pending-card p.text-xl, .profit-card p.text-xl {
+        font-size: 1.25rem;
+    }
+}
+
+/* Pull-to-refresh hint */
+.pull-hint {
+    display: none;
+}
+@media (max-width: 768px) {
+    .pull-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        color: rgba(107, 26, 26, 0.4);
+        font-size: 12px;
+        gap: 6px;
+    }
+}
+
+/* Mobile filter bar */
+.mobile-filters {
+    display: none;
+}
+@media (max-width: 768px) {
+    .mobile-filters {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .mobile-filters::-webkit-scrollbar { display: none; }
+    .mobile-filters button {
+        white-space: nowrap;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(201, 162, 39, 0.3);
+        background: white;
+        font-size: 13px;
+        color: #2C1810;
+    }
+    .mobile-filters button.active {
+        background: #6B1A1A;
+        color: white;
+        border-color: #6B1A1A;
+    }
+}
+
+/* Large touch targets for order actions */
+.order-action-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+@media (max-width: 640px) {
+    #statusModal .modal-content {
+        min-height: auto;
+        max-height: 80vh;
+    }
+    #statusModal button {
+        padding: 16px;
+        margin-bottom: 8px;
+    }
+    #statusModal button:last-child {
+        margin-bottom: 0;
+    }
+}
     </style>
 </head>
 <body class="bg-nakshatra-cream text-nakshatra-dark">
@@ -177,6 +357,9 @@ html_content = '''<!DOCTYPE html>
 
         <!-- Content Area -->
         <main class="p-4 sm:p-6">
+            <div class="pull-hint lg:hidden">
+    <i class="fas fa-arrow-down"></i> Pull down to refresh
+</div>
             
             <!-- DASHBOARD TAB -->
             <div id="tab-dashboard" class="tab-content">
@@ -310,24 +493,29 @@ html_content = '''<!DOCTYPE html>
                     </div>
                     
                     <!-- Orders Table -->
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="bg-nakshatra-cream/50 text-nakshatra-dark/60 text-xs uppercase tracking-wider">
-                                    <th class="px-4 py-3 text-left font-semibold">Order #</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Customer</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Items</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Total</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Status</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Date</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ordersTableBody">
-                                <!-- Injected via JS -->
-                            </tbody>
-                        </table>
-                    </div>
+        <!-- Desktop Table (hidden on mobile) -->
+        <div class="desktop-table overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-nakshatra-cream/50 text-nakshatra-dark/60 text-xs uppercase tracking-wider">
+                        <th class="px-4 py-3 text-left font-semibold">Order #</th>
+                        <th class="px-4 py-3 text-left font-semibold">Customer</th>
+                        <th class="px-4 py-3 text-left font-semibold">Total</th>
+                        <th class="px-4 py-3 text-left font-semibold">Status</th>
+                        <th class="px-4 py-3 text-left font-semibold">Date</th>
+                        <th class="px-4 py-3 text-left font-semibold">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                    <!-- Injected via JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mobile Cards (hidden on desktop) -->
+        <div id="ordersMobileCards" class="lg:hidden space-y-3 p-4">
+            <!-- Injected via JS -->
+        </div>
                     <div id="ordersEmpty" class="hidden py-16 text-center">
                         <i class="fas fa-shopping-bag text-4xl text-nakshatra-dark/15 mb-3"></i>
                         <p class="text-nakshatra-dark/40 font-playfair">No orders found</p>
@@ -355,7 +543,6 @@ html_content = '''<!DOCTYPE html>
                                     <th class="px-4 py-3 text-left font-semibold">Product</th>
                                     <th class="px-4 py-3 text-left font-semibold">Category</th>
                                     <th class="px-4 py-3 text-left font-semibold">Prices</th>
-                                    <th class="px-4 py-3 text-left font-semibold">Cost</th>
                                     <th class="px-4 py-3 text-left font-semibold">Status</th>
                                     <th class="px-4 py-3 text-left font-semibold">Actions</th>
                                 </tr>
@@ -478,6 +665,15 @@ html_content = '''<!DOCTYPE html>
                     </div>
                 </div>
             </div>
+            <!-- Mobile Sticky Actions -->
+<div class="mobile-sticky-actions lg:hidden">
+    <button onclick="refreshData()" class="flex-1 flex items-center justify-center gap-2 py-3 bg-nakshatra-cream border border-nakshatra-gold/30 rounded-xl text-nakshatra-maroon font-semibold text-sm">
+        <i class="fas fa-sync-alt"></i> Refresh
+    </button>
+    <button onclick="exportOrders()" class="flex-1 flex items-center justify-center gap-2 py-3 bg-nakshatra-maroon rounded-xl text-white font-semibold text-sm">
+        <i class="fas fa-download"></i> Export
+    </button>
+</div>
         </main>
     </div>
 
@@ -675,7 +871,10 @@ html_content = '''<!DOCTYPE html>
             <p id="toastMsg" class="text-xs text-nakshatra-cream/70">Operation completed</p>
         </div>
     </div>
-
+<!-- Mobile Quick Action FAB -->
+<button onclick="openAddProductModal()" class="fixed bottom-20 right-4 z-40 lg:hidden w-14 h-14 bg-nakshatra-green rounded-full shadow-xl flex items-center justify-center text-white hover:scale-110 transition-transform">
+    <i class="fas fa-plus text-xl"></i>
+</button>
     <script>
         // ===== SUPABASE SETUP =====
         const SUPABASE_URL = 'https://lstmvrrqfrlyxcdboybt.supabase.co';
@@ -1157,9 +1356,6 @@ html_content = '''<!DOCTYPE html>
                             <p class="text-xs text-nakshatra-dark/50">${order.phone}</p>
                         </td>
                         <td class="px-4 py-3">
-                            <span class="text-sm text-nakshatra-dark/70">${itemCount} items</span>
-                        </td>
-                        <td class="px-4 py-3">
                             <span class="font-bold text-nakshatra-maroon text-sm">₹${order.total}</span>
                         </td>
                         <td class="px-4 py-3">
@@ -1187,6 +1383,7 @@ html_content = '''<!DOCTYPE html>
                     </tr>
                 `;
             }).join('');
+            renderMobileOrders();
         }
 
         function filterOrders() {
@@ -1298,21 +1495,21 @@ html_content = '''<!DOCTYPE html>
             const order = allOrders.find(o => o.id === orderId);
             if (!order) return;
             
-            let message = `Hello ${order.customer_name}! 👋\\n\\n`;
-            message += `Thank you for your order from *Nakshatra Pickles & Home Foods*! 🌟\\n\\n`;
+            let message = `Hello ${order.customer_name}!`;
+            message += `Thank you for your order from *Nakshatra Pickles & Home Foods*!`;
             message += `*Order Details:*\\n`;
             message += `Order #: ${order.order_number || order.id.slice(0, 8)}\\n`;
             message += `Status: ${order.status.toUpperCase()}\\n`;
             message += `Total: ₹${order.total}\\n\\n`;
             
             if (order.status === 'pending') {
-                message += `We have received your order and will confirm it shortly. Please let us know if you have any questions! 😊\\n\\n`;
+                message += `We have received your order and will confirm it shortly. Please let us know if you have any questions! 😊`;
             } else if (order.status === 'confirmed') {
-                message += `Your order has been confirmed! We are now preparing it with care. 🙏\\n\\n`;
+                message += `Your order has been confirmed! We are now preparing it with care. 🙏`;
             } else if (order.status === 'ready') {
-                message += `Your order is ready! Please collect it or let us know your preferred delivery time. 📦\\n\\n`;
+                message += `Your order is ready! Please collect it or let us know your preferred delivery time.`;
             } else if (order.status === 'delivered') {
-                message += `Your order has been delivered! We hope you enjoy our homemade delicacies. 🎉\\n\\n`;
+                message += `Your order has been delivered! We hope you enjoy our homemade delicacies.`;
             }
             
             message += `For any queries, reply here or call us at +91 62810 10755.\\n`;
@@ -1417,9 +1614,6 @@ html_content = '''<!DOCTYPE html>
                         </td>
                         <td class="px-4 py-3">
                             <p class="text-xs text-nakshatra-dark/70">${priceStr}</p>
-                        </td>
-                        <td class="px-4 py-3">
-                            <span class="text-sm text-nakshatra-dark">₹${product.cost_price || 0}</span>
                         </td>
                         <td class="px-4 py-3">${statusBadge}</td>
                         <td class="px-4 py-3">
@@ -1728,6 +1922,111 @@ html_content = '''<!DOCTYPE html>
                 document.getElementById('notifDropdown').classList.remove('open');
             }
         });
+        function renderMobileOrders() {
+    const container = document.getElementById('ordersMobileCards');
+    if (!container) return;
+    
+    const search = document.getElementById('orderSearch').value.toLowerCase();
+    const statusFilter = document.getElementById('statusFilter').value;
+    const dateFilter = document.getElementById('dateFilter').value;
+
+    let filtered = allOrders.filter(o => {
+        const matchSearch = !search || 
+            (o.customer_name && o.customer_name.toLowerCase().includes(search)) ||
+            (o.phone && o.phone.includes(search)) ||
+            (o.order_number && o.order_number.toLowerCase().includes(search));
+        const matchStatus = statusFilter === 'all' || o.status === statusFilter;
+        let matchDate = true;
+        if (dateFilter !== 'all') {
+            const orderDate = new Date(o.created_at);
+            const today = new Date();
+            if (dateFilter === 'today') {
+                matchDate = orderDate.toDateString() === today.toDateString();
+            } else if (dateFilter === 'week') {
+                const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                matchDate = orderDate >= weekAgo;
+            } else if (dateFilter === 'month') {
+                matchDate = orderDate.getMonth() === today.getMonth() && orderDate.getFullYear() === today.getFullYear();
+            }
+        }
+        return matchSearch && matchStatus && matchDate;
+    });
+
+    if (filtered.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-12">
+                <i class="fas fa-shopping-bag text-4xl text-nakshatra-dark/15 mb-3"></i>
+                <p class="text-nakshatra-dark/40 font-playfair">No orders found</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = filtered.map(order => {
+        const itemCount = Array.isArray(order.items) ? order.items.reduce((s, i) => s + (i.qty || 0), 0) : 0;
+        const statusColor = getStatusColor(order.status);
+        
+        return `
+            <div class="mobile-card" onclick="openOrderDetail('${order.id}')">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <span class="font-bold text-nakshatra-dark text-base">${order.order_number || order.id.slice(0, 8)}</span>
+                        <span class="text-xs text-nakshatra-dark/40 ml-2">${formatDate(order.created_at)}</span>
+                    </div>
+                    <span class="text-xs px-2.5 py-1 rounded-full ${statusColor.bg} ${statusColor.text} font-medium capitalize">${order.status}</span>
+                </div>
+                
+                <div class="mb-3">
+                    <p class="font-semibold text-nakshatra-dark">${order.customer_name}</p>
+                    <p class="text-sm text-nakshatra-dark/50"><i class="fas fa-phone-alt text-xs mr-1"></i>${order.phone}</p>
+                    <p class="text-sm text-nakshatra-dark/50"><i class="fas fa-map-marker-alt text-xs mr-1"></i>${order.address || 'Pickup'}</p>
+                </div>
+                
+                <div class="flex items-center justify-between pt-3 border-t border-nakshatra-gold/10">
+                    <div>
+                        <span class="text-xs text-nakshatra-dark/50">${itemCount} items</span>
+                        <span class="font-bold text-nakshatra-maroon text-lg ml-2">₹${order.total}</span>
+                    </div>
+                    <div class="flex gap-1" onclick="event.stopPropagation()">
+                        <button onclick="openStatusModal('${order.id}')" class="order-action-btn bg-status-confirmed/10 text-status-confirmed" title="Update Status">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="sendWhatsAppToCustomer('${order.id}')" class="order-action-btn bg-nakshatra-green/10 text-nakshatra-green" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button onclick="deleteOrder('${order.id}')" class="order-action-btn bg-status-cancelled/10 text-status-cancelled" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+// ===== MOBILE SWIPE GESTURES =====
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const sidebar = document.getElementById('sidebar');
+    // Swipe left to close sidebar
+    if (touchStartX - touchEndX > 80 && !sidebar.classList.contains('-translate-x-full')) {
+        toggleMobileSidebar();
+    }
+    // Swipe right to open sidebar (from left edge)
+    if (touchEndX - touchStartX > 80 && touchStartX < 30 && sidebar.classList.contains('-translate-x-full')) {
+        toggleMobileSidebar();
+    }
+}
     </script>
 </body>
 </html>
