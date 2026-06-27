@@ -418,32 +418,39 @@
         .instagram-btn i {
             font-size: 1.2rem;
         }
+
         #orderModal {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-#orderModal.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-#orderModal .absolute.inset-0.flex {
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-#orderModal.open .absolute.inset-0.flex {
-    transform: translateY(0);
-}
-/* Floating Basket */
-#floatingBasket {
-    box-shadow: 0 8px 30px rgba(107, 26, 26, 0.4);
-}
-#floatingBasket:hover {
-    box-shadow: 0 12px 40px rgba(107, 26, 26, 0.5);
-}
-#floatingBasket.hidden {
-    display: none !important;
-}
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #orderModal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #orderModal .absolute.inset-0.flex {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        #orderModal.open .absolute.inset-0.flex {
+            transform: translateY(0);
+        }
+
+        /* Floating Basket */
+        #floatingBasket {
+            box-shadow: 0 8px 30px rgba(107, 26, 26, 0.4);
+        }
+
+        #floatingBasket:hover {
+            box-shadow: 0 12px 40px rgba(107, 26, 26, 0.5);
+        }
+
+        #floatingBasket.hidden {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -963,139 +970,141 @@
             <p id="toastMsg" class="text-xs text-nakshatra-cream/70">Item added successfully</p>
         </div>
     </div>
-<!-- Order Form Modal -->
-<div id="orderModal" class="fixed inset-0 z-[60] hidden">
-    <!-- Backdrop -->
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeOrderModal()"></div>
-    
-    <!-- Modal Content -->
-    <div class="absolute inset-0 flex items-center justify-center p-4">
-        <div class="bg-nakshatra-cream rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto relative border-2 border-nakshatra-gold/30">
-            <!-- Close button -->
-            <button onclick="closeOrderModal()" class="absolute top-4 right-4 w-8 h-8 bg-nakshatra-maroon/10 hover:bg-nakshatra-maroon hover:text-white rounded-full flex items-center justify-center transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <!-- Header -->
-            <div class="p-6 border-b border-nakshatra-gold/20">
-                <h3 class="font-cinzel text-nakshatra-maroon text-xl font-bold text-center">
-                    <i class="fas fa-clipboard-list text-nakshatra-gold mr-2"></i>Place Your Order
-                </h3>
-                <p class="text-center text-nakshatra-dark/50 text-sm mt-1">Fill in your details below</p>
+    <!-- Order Form Modal -->
+    <div id="orderModal" class="fixed inset-0 z-[60] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeOrderModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div
+                class="bg-nakshatra-cream rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto relative border-2 border-nakshatra-gold/30">
+                <!-- Close button -->
+                <button onclick="closeOrderModal()"
+                    class="absolute top-4 right-4 w-8 h-8 bg-nakshatra-maroon/10 hover:bg-nakshatra-maroon hover:text-white rounded-full flex items-center justify-center transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <!-- Header -->
+                <div class="p-6 border-b border-nakshatra-gold/20">
+                    <h3 class="font-cinzel text-nakshatra-maroon text-xl font-bold text-center">
+                        <i class="fas fa-clipboard-list text-nakshatra-gold mr-2"></i>Place Your Order
+                    </h3>
+                    <p class="text-center text-nakshatra-dark/50 text-sm mt-1">Fill in your details below</p>
+                </div>
+
+                <!-- Form -->
+                <form id="orderForm" onsubmit="submitOrder(event)" class="p-6 space-y-4">
+                    <!-- Name -->
+                    <div>
+                        <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Full Name <span
+                                class="text-nakshatra-maroon">*</span></label>
+                        <input type="text" id="orderName" required minlength="2" maxlength="50"
+                            class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
+                            placeholder="Enter your name">
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Phone Number <span
+                                class="text-nakshatra-maroon">*</span></label>
+                        <input type="tel" id="orderPhone" required pattern="[0-9]{10}" maxlength="10"
+                            class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
+                            placeholder="10-digit mobile number">
+                        <p class="text-xs text-nakshatra-dark/40 mt-1">We'll contact you on this number</p>
+                    </div>
+
+                    <!-- Address -->
+                    <div>
+                        <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Delivery Address <span
+                                class="text-nakshatra-maroon">*</span></label>
+                        <textarea id="orderAddress" required minlength="3" rows="3"
+                            class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all resize-none"
+                            placeholder="Enter your full address or type 'pickup'"></textarea>
+                    </div>
+
+                    <!-- Order Summary Preview -->
+                    <div class="bg-nakshatra-maroon/5 rounded-lg p-4 border border-nakshatra-gold/20">
+                        <h4 class="font-cinzel text-nakshatra-maroon font-bold text-sm mb-2">Order Summary</h4>
+                        <div id="orderSummaryItems"
+                            class="space-y-1 text-sm text-nakshatra-dark/70 max-h-32 overflow-y-auto">
+                            <!-- Items injected via JS -->
+                        </div>
+                        <div class="border-t border-nakshatra-gold/20 mt-2 pt-2 flex justify-between items-center">
+                            <span class="font-semibold text-nakshatra-dark">Total:</span>
+                            <span id="orderSummaryTotal" class="font-bold text-nakshatra-maroon text-lg">₹0</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>Confirm & Order on WhatsApp</span>
+                    </button>
+
+                    <button type="button" onclick="closeOrderModal()"
+                        class="w-full text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
+                        Cancel
+                    </button>
+                </form>
             </div>
-            
-            <!-- Form -->
-            <form id="orderForm" onsubmit="submitOrder(event)" class="p-6 space-y-4">
-                <!-- Name -->
-                <div>
-                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Full Name <span class="text-nakshatra-maroon">*</span></label>
-                    <input type="text" id="orderName" required minlength="2" maxlength="50"
-                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
-                        placeholder="Enter your name">
-                </div>
-                
-                <!-- Phone -->
-                <div>
-                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Phone Number <span class="text-nakshatra-maroon">*</span></label>
-                    <input type="tel" id="orderPhone" required pattern="[0-9]{10}" maxlength="10"
-                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all"
-                        placeholder="10-digit mobile number">
-                    <p class="text-xs text-nakshatra-dark/40 mt-1">We'll contact you on this number</p>
-                </div>
-                
-                <!-- Address -->
-                <div>
-                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Delivery Address <span class="text-nakshatra-maroon">*</span></label>
-                    <textarea id="orderAddress" required minlength="3" rows="3"
-                        class="w-full px-4 py-3 rounded-lg border border-nakshatra-gold/30 bg-white focus:outline-none focus:border-nakshatra-maroon focus:ring-2 focus:ring-nakshatra-maroon/20 transition-all resize-none"
-                        placeholder="Enter your full address or type 'pickup'"></textarea>
-                </div>
-                
-                <!-- Order Summary Preview -->
-                <div class="bg-nakshatra-maroon/5 rounded-lg p-4 border border-nakshatra-gold/20">
-                    <h4 class="font-cinzel text-nakshatra-maroon font-bold text-sm mb-2">Order Summary</h4>
-                    <div id="orderSummaryItems" class="space-y-1 text-sm text-nakshatra-dark/70 max-h-32 overflow-y-auto">
-                        <!-- Items injected via JS -->
-                    </div>
-                    <div class="border-t border-nakshatra-gold/20 mt-2 pt-2 flex justify-between items-center">
-                        <span class="font-semibold text-nakshatra-dark">Total:</span>
-                        <span id="orderSummaryTotal" class="font-bold text-nakshatra-maroon text-lg">₹0</span>
-                    </div>
-                </div>
-                
-                <!-- Submit Button -->
-                <button type="submit"
-                    class="w-full bg-nakshatra-green hover:bg-nakshatra-green/90 text-white font-bold py-4 rounded-lg btn-shine transition-all flex items-center justify-center gap-2 shadow-lg">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                    <span>Confirm & Order on WhatsApp</span>
-                </button>
-                
-                <button type="button" onclick="closeOrderModal()"
-                    class="w-full text-nakshatra-maroon/60 hover:text-nakshatra-maroon text-sm py-2 transition-colors">
-                    Cancel
-                </button>
-            </form>
         </div>
     </div>
-</div>
-<!-- Floating Basket Button -->
-<button id="floatingBasket" onclick="toggleCart()" 
-    class="fixed bottom-6 right-6 z-40 bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-nakshatra-maroon/30 group hidden">
-    <div class="relative">
-        <i class="fas fa-shopping-basket text-2xl group-hover:rotate-12 transition-transform"></i>
-        <span id="floatingBadge"
-            class="absolute -top-3 -right-3 w-6 h-6 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold border-2 border-nakshatra-cream">0</span>
-    </div>
-</button>
-<div id="successModal"
-     class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+    <!-- Floating Basket Button -->
+    <button id="floatingBasket" onclick="toggleCart()"
+        class="fixed bottom-6 right-6 z-40 bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-nakshatra-maroon/30 group hidden">
+        <div class="relative">
+            <i class="fas fa-shopping-basket text-2xl group-hover:rotate-12 transition-transform"></i>
+            <span id="floatingBadge"
+                class="absolute -top-3 -right-3 w-6 h-6 bg-nakshatra-orange text-white text-xs rounded-full flex items-center justify-center font-bold border-2 border-nakshatra-cream">0</span>
+        </div>
+    </button>
+    <div id="successModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
 
-    <div class="bg-white rounded-2xl p-8 max-w-md w-[90%] text-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-[90%] text-center">
 
-        <div class="text-6xl mb-4">🎉</div>
+            <div class="text-6xl mb-4">🎉</div>
 
-        <h2 class="text-2xl font-bold text-green-600">
-            Thank You!
-        </h2>
+            <h2 class="text-2xl font-bold text-green-600">
+                Thank You!
+            </h2>
 
-        <p class="mt-3 text-gray-600">
-            Your order request has been received.
-        </p>
-
-        <div class="bg-gray-100 rounded-xl p-4 mt-5">
-
-            <p class="text-sm text-gray-500">
-                Order Number
+            <p class="mt-3 text-gray-600">
+                Your order request has been received.
             </p>
 
-            <h3 id="successOrderNumber"
-                class="text-xl font-bold text-nakshatra-maroon">
-            </h3>
+            <div class="bg-gray-100 rounded-xl p-4 mt-5">
 
-            <p class="mt-2">
-                Status:
-                <span class="text-orange-600 font-semibold">
-                    Pending
-                </span>
+                <p class="text-sm text-gray-500">
+                    Order Number
+                </p>
+
+                <h3 id="successOrderNumber" class="text-xl font-bold text-nakshatra-maroon">
+                </h3>
+
+                <p class="mt-2">
+                    Status:
+                    <span class="text-orange-600 font-semibold">
+                        Pending
+                    </span>
+                </p>
+
+            </div>
+
+            <p class="text-sm text-gray-500 mt-5">
+                We will verify your order and contact you shortly on WhatsApp with confirmation.
             </p>
+
+            <button onclick="closeSuccessModal()" class="mt-6 w-full bg-nakshatra-green text-white py-3 rounded-lg">
+
+                Continue Shopping
+
+            </button>
 
         </div>
 
-        <p class="text-sm text-gray-500 mt-5">
-            We will verify your order and contact you shortly on WhatsApp with confirmation and payment details.
-        </p>
-
-        <button
-            onclick="closeSuccessModal()"
-            class="mt-6 w-full bg-nakshatra-green text-white py-3 rounded-lg">
-
-            Continue Shopping
-
-        </button>
-
     </div>
-
-</div>
     <script>
         const SUPABASE_URL = 'https://lstmvrrqfrlyxcdboybt.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_mFOFSrzXkxvj1Sk30hm3-A_ouIhkUsy';
@@ -1600,7 +1609,7 @@
             menu.classList.toggle('open');
             document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
         }
-        
+
         // ===== TOAST =====
         function showToast(title, msg) {
             const toast = document.getElementById('toast');
@@ -1610,151 +1619,151 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-    // Open the order form modal
-function openOrderModal() {
-    if (cart.length === 0) {
-        showToast('Basket is empty!', 'Add some items first');
-        return;
-    }
-    
-    // Populate order summary
-    const summaryItems = document.getElementById('orderSummaryItems');
-    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    
-    summaryItems.innerHTML = cart.map(item => `
+        // Open the order form modal
+        function openOrderModal() {
+            if (cart.length === 0) {
+                showToast('Basket is empty!', 'Add some items first');
+                return;
+            }
+
+            // Populate order summary
+            const summaryItems = document.getElementById('orderSummaryItems');
+            const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+            summaryItems.innerHTML = cart.map(item => `
         <div class="flex justify-between">
             <span>${item.name} (${item.size}) × ${item.qty}</span>
             <span class="font-medium">₹${item.price * item.qty}</span>
         </div>
     `).join('');
-    
-    document.getElementById('orderSummaryTotal').textContent = '₹' + total;
-    
-    // Show modal
-    const modal = document.getElementById('orderModal');
-    modal.classList.remove('hidden');
-    // Small delay to allow display:block to apply before opacity transition
-    setTimeout(() => modal.classList.add('open'), 10);
-    document.body.style.overflow = 'hidden';
-}
 
-// Close the order form modal
-function closeOrderModal() {
-    const modal = document.getElementById('orderModal');
-    modal.classList.remove('open');
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        document.getElementById('orderForm').reset();
-    }, 300);
-    document.body.style.overflow = '';
-}
+            document.getElementById('orderSummaryTotal').textContent = '₹' + total;
 
-// Handle form submission
-async function submitOrder(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('orderName').value.trim();
-    const phone = document.getElementById('orderPhone').value.trim();
-    const address = document.getElementById('orderAddress').value.trim();
-    
-    // Validation (same rules as before)
-    if (name.length < 2) {
-        showToast('Invalid Name', 'Please enter at least 2 characters');
-        return;
-    }
-    if (!/^[0-9]{10}$/.test(phone)) {
-        showToast('Invalid Phone', 'Please enter a valid 10-digit number');
-        return;
-    }
-    if (address.length < 3) {
-        showToast('Invalid Address', 'Please enter a valid address or type "pickup"');
-        return;
-    }
-    
-    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    
-    // Save to Supabase
-const { data, error } = await supabaseClient
-    .from('orders')
-    .insert({
-        customer_name: name,
-        phone: phone,
-        address: address,
-        items: cart,
-        total: total,
-        status: 'pending'
-    })
-    .select()
-    .single();
-    
-    if (error) {
-        console.error('Order save failed:', error);
-        showToast('Warning', 'Order could not be saved, but WhatsApp will still open.');
-    } else {
-        showToast('Order recorded!', 'Saved successfully');
-    }
-    
-    // Build WhatsApp message (same as before)
-    // let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
-    // message += `*Customer:* ${name}\n`;
-    // message += `*Phone:* ${phone}\n`;
-    // message += `*Address:* ${address}\n\n`;
-    // message += "Hello! I would like to place an order:\n\n";
-    
-    // cart.forEach((item, idx) => {
-    //     const itemTotal = item.price * item.qty;
-    //     message += `${idx + 1}. *${item.name}*\n`;
-    //     message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
-    // });
-    
-    // message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
-    // message += `*Estimated Total: ₹${total}*\n\n`;
-    // message += "Please confirm availability and share payment details.\nThank you! 🙏";
-    
-    // const encoded = encodeURIComponent(message);
-    // window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
-    showSuccessModal(data.order_number);
-    
-    // Close modal and clear cart
-    closeOrderModal();
-    cart = [];
-    saveCart();
-    updateCartUI();
-    renderProducts();
-}
-// ===== FLOATING BASKET =====
-function updateFloatingBasket() {
-    const floatingBtn = document.getElementById('floatingBasket');
-    const floatingBadge = document.getElementById('floatingBadge');
-    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-    
-    if (totalQty > 0) {
-        floatingBtn.classList.remove('hidden');
-        floatingBadge.textContent = totalQty;
-    } else {
-        floatingBtn.classList.add('hidden');
-    }
-}
-function showSuccessModal(orderNumber) {
+            // Show modal
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => modal.classList.add('open'), 10);
+            document.body.style.overflow = 'hidden';
+        }
 
-    document.getElementById("successOrderNumber").innerText = orderNumber;
+        // Close the order form modal
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('open');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('orderForm').reset();
+            }, 300);
+            document.body.style.overflow = '';
+        }
 
-    const modal = document.getElementById("successModal");
+        // Handle form submission
+        async function submitOrder(event) {
+            event.preventDefault();
 
-    modal.classList.remove("hidden");
+            const name = document.getElementById('orderName').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const address = document.getElementById('orderAddress').value.trim();
 
-    modal.classList.add("flex");
-}
+            // Validation (same rules as before)
+            if (name.length < 2) {
+                showToast('Invalid Name', 'Please enter at least 2 characters');
+                return;
+            }
+            if (!/^[0-9]{10}$/.test(phone)) {
+                showToast('Invalid Phone', 'Please enter a valid 10-digit number');
+                return;
+            }
+            if (address.length < 3) {
+                showToast('Invalid Address', 'Please enter a valid address or type "pickup"');
+                return;
+            }
 
-function closeSuccessModal() {
+            const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-    const modal = document.getElementById("successModal");
+            // Save to Supabase
+            const { data, error } = await supabaseClient
+                .from('orders')
+                .insert({
+                    customer_name: name,
+                    phone: phone,
+                    address: address,
+                    items: cart,
+                    total: total,
+                    status: 'pending'
+                })
+                .select()
+                .single();
 
-    modal.classList.add("hidden");
+            if (error) {
+                console.error('Order save failed:', error);
+                showToast('Warning', 'Order could not be saved, but WhatsApp will still open.');
+            } else {
+                showToast('Order recorded!', 'Saved successfully');
+            }
 
-    modal.classList.remove("flex");
-}
-updateFloatingBasket();
+            // Build WhatsApp message (same as before)
+            // let message = "🌟 *Order from Nakshatra Pickles & Home Foods* 🌟\n\n";
+            // message += `*Customer:* ${name}\n`;
+            // message += `*Phone:* ${phone}\n`;
+            // message += `*Address:* ${address}\n\n`;
+            // message += "Hello! I would like to place an order:\n\n";
+
+            // cart.forEach((item, idx) => {
+            //     const itemTotal = item.price * item.qty;
+            //     message += `${idx + 1}. *${item.name}*\n`;
+            //     message += `   Size: ${item.size} | Qty: ${item.qty} | ₹${itemTotal}\n\n`;
+            // });
+
+            // message += `*Total Items: ${cart.reduce((s, i) => s + i.qty, 0)}*\n`;
+            // message += `*Estimated Total: ₹${total}*\n\n`;
+            // message += "Please confirm availability and share payment details.\nThank you! 🙏";
+
+            // const encoded = encodeURIComponent(message);
+            // window.open(`https://wa.me/916281010755?text=${encoded}`, '_blank');
+            showSuccessModal(data.order_number);
+
+            // Close modal and clear cart
+            closeOrderModal();
+            cart = [];
+            saveCart();
+            updateCartUI();
+            renderProducts();
+        }
+        // ===== FLOATING BASKET =====
+        function updateFloatingBasket() {
+            const floatingBtn = document.getElementById('floatingBasket');
+            const floatingBadge = document.getElementById('floatingBadge');
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            if (totalQty > 0) {
+                floatingBtn.classList.remove('hidden');
+                floatingBadge.textContent = totalQty;
+            } else {
+                floatingBtn.classList.add('hidden');
+            }
+        }
+        function showSuccessModal(orderNumber) {
+
+            document.getElementById("successOrderNumber").innerText = orderNumber;
+
+            const modal = document.getElementById("successModal");
+
+            modal.classList.remove("hidden");
+
+            modal.classList.add("flex");
+        }
+
+        function closeSuccessModal() {
+
+            const modal = document.getElementById("successModal");
+
+            modal.classList.add("hidden");
+
+            modal.classList.remove("flex");
+        }
+        updateFloatingBasket();
     </script>
 </body>
 
