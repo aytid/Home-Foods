@@ -140,6 +140,10 @@
             background: rgba(201, 162, 39, 0.05);
         }
 
+        .recent-order-item:active {
+            background: rgba(201, 162, 39, 0.08);
+        }
+
         .dropdown-menu {
             transform: scaleY(0);
             transform-origin: top;
@@ -249,7 +253,7 @@
             display: none;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1023px) {
             .desktop-table {
                 display: none;
             }
@@ -313,32 +317,6 @@
             .qty-btn {
                 width: 36px;
                 height: 36px;
-            }
-        }
-
-        /* Sticky action bar for mobile */
-        .mobile-sticky-actions {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-sticky-actions {
-                display: flex;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: white;
-                border-top: 1px solid rgba(201, 162, 39, 0.2);
-                padding: 12px 16px;
-                gap: 12px;
-                z-index: 40;
-                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-            }
-
-            /* Add padding to main so content isn't hidden behind sticky bar */
-            main {
-                padding-bottom: 80px;
             }
         }
 
@@ -428,6 +406,11 @@
             align-items: center;
             justify-content: center;
             border-radius: 10px;
+        }
+
+        .order-action-btn.flex-1 {
+            width: auto;
+            padding: 0 12px;
         }
 
         @media (max-width: 640px) {
@@ -546,7 +529,7 @@
                             class="absolute top-1 right-1 w-2 h-2 bg-status-pending rounded-full hidden"></span>
                     </button>
                     <div id="notifDropdown"
-                        class="dropdown-menu absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-nakshatra-gold/20 z-50 overflow-hidden">
+                        class="dropdown-menu absolute right-0 mt-2 w-72 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-xl border border-nakshatra-gold/20 z-50 overflow-hidden">
                         <div class="p-3 border-b border-nakshatra-gold/10">
                             <h4 class="font-semibold text-sm text-nakshatra-dark">Notifications</h4>
                         </div>
@@ -629,7 +612,8 @@
                                 class="text-xs text-nakshatra-gold hover:text-nakshatra-maroon transition-colors">View
                                 All</button>
                         </div>
-                        <div id="recentOrdersList" class="divide-y divide-nakshatra-gold/10">
+                        <div style="    display: flex;
+    flex-direction: column;" id="recentOrdersList" class="divide-y divide-nakshatra-gold/10">
                             <!-- Injected via JS -->
                         </div>
                     </div>
@@ -680,13 +664,13 @@
                     <!-- Filters -->
                     <div class="p-4 border-b border-nakshatra-gold/10 flex flex-wrap gap-3 items-center">
                         <div
-                            class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 flex-1 sm:flex-none">
+                            class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 w-full sm:flex-1 sm:w-auto sm:max-w-xs">
                             <i class="fas fa-search text-nakshatra-dark/30 text-sm"></i>
                             <input type="text" id="orderSearch" placeholder="Search orders..." oninput="filterOrders()"
-                                class="bg-transparent text-sm outline-none w-full sm:w-48 text-nakshatra-dark placeholder-nakshatra-dark/40">
+                                class="bg-transparent text-sm outline-none w-full text-nakshatra-dark placeholder-nakshatra-dark/40">
                         </div>
                         <select id="statusFilter" onchange="filterOrders()"
-                            class="bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 text-sm text-nakshatra-dark outline-none">
+                            class="bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 text-sm text-nakshatra-dark outline-none flex-1 sm:flex-none min-w-[140px]">
                             <option value="all">All Status</option>
                             <option value="pending">Pending</option>
                             <option value="confirmed">Confirmed</option>
@@ -697,17 +681,12 @@
                             <option value="cancelled">Cancelled</option>
                         </select>
                         <select id="dateFilter" onchange="filterOrders()"
-                            class="bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 text-sm text-nakshatra-dark outline-none">
+                            class="bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 text-sm text-nakshatra-dark outline-none flex-1 sm:flex-none min-w-[120px]">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="week">This Week</option>
                             <option value="month">This Month</option>
                         </select>
-                        <button onclick="exportOrders()"
-                            class="ml-auto flex items-center gap-2 px-3 py-2 bg-nakshatra-maroon text-white rounded-lg text-sm hover:bg-nakshatra-maroon/90 transition-colors">
-                            <i class="fas fa-download"></i>
-                            <span class="hidden sm:inline">Export</span>
-                        </button>
                     </div>
 
                     <!-- Orders Table -->
@@ -744,22 +723,23 @@
 
             <!-- PRODUCTS TAB -->
             <div id="tab-products" class="tab-content hidden">
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                     <div
-                        class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 flex-1 sm:flex-none max-w-md">
+                        class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 w-full sm:flex-1 sm:max-w-md">
                         <i class="fas fa-search text-nakshatra-dark/30 text-sm"></i>
                         <input type="text" id="productSearch" placeholder="Search products..."
                             oninput="filterProducts()"
                             class="bg-transparent text-sm outline-none w-full text-nakshatra-dark placeholder-nakshatra-dark/40">
                     </div>
                     <button onclick="openAddProductModal()"
-                        class="flex items-center gap-2 px-4 py-2 bg-nakshatra-green text-white rounded-lg text-sm hover:bg-nakshatra-green/90 transition-colors shadow-md">
+                        class="flex items-center justify-center gap-2 px-4 py-2 bg-nakshatra-green text-white rounded-lg text-sm hover:bg-nakshatra-green/90 transition-colors shadow-md w-full sm:w-auto">
                         <i class="fas fa-plus"></i>
-                        <span class="hidden sm:inline">Add Product</span>
+                        <span>Add Product</span>
                     </button>
                 </div>
                 <div class="bg-white rounded-xl border border-nakshatra-gold/10 shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto">
+                    <!-- Desktop Table (hidden on mobile) -->
+                    <div class="desktop-table overflow-x-auto">
                         <table class="w-full text-sm">
                             <thead>
                                 <tr
@@ -776,27 +756,36 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Mobile Cards (hidden on desktop) -->
+                    <div id="productsMobileCards" class="lg:hidden space-y-3 p-4">
+                        <!-- Injected via JS -->
+                    </div>
+                    <div id="productsEmpty" class="hidden py-16 text-center">
+                        <i class="fas fa-box text-4xl text-nakshatra-dark/15 mb-3"></i>
+                        <p class="text-nakshatra-dark/40 font-playfair">No products found</p>
+                    </div>
                 </div>
             </div>
 
             <!-- EXPENSES TAB -->
             <div id="tab-expenses" class="tab-content hidden">
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                     <div
-                        class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 flex-1 sm:flex-none max-w-md">
+                        class="flex items-center gap-2 bg-nakshatra-cream rounded-lg px-3 py-2 border border-nakshatra-gold/20 w-full sm:flex-1 sm:max-w-md">
                         <i class="fas fa-search text-nakshatra-dark/30 text-sm"></i>
                         <input type="text" id="expenseSearch" placeholder="Search expenses..."
                             oninput="filterExpenses()"
                             class="bg-transparent text-sm outline-none w-full text-nakshatra-dark placeholder-nakshatra-dark/40">
                     </div>
                     <button onclick="openAddExpenseModal()"
-                        class="flex items-center gap-2 px-4 py-2 bg-nakshatra-orange text-white rounded-lg text-sm hover:bg-nakshatra-orange/90 transition-colors shadow-md">
+                        class="flex items-center justify-center gap-2 px-4 py-2 bg-nakshatra-orange text-white rounded-lg text-sm hover:bg-nakshatra-orange/90 transition-colors shadow-md w-full sm:w-auto">
                         <i class="fas fa-plus"></i>
-                        <span class="hidden sm:inline">Add Expense</span>
+                        <span>Add Expense</span>
                     </button>
                 </div>
                 <div class="bg-white rounded-xl border border-nakshatra-gold/10 shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto">
+                    <div class="desktop-table overflow-x-auto">
                         <table class="w-full text-sm">
                             <thead>
                                 <tr
@@ -812,6 +801,13 @@
                                 <!-- Injected via JS -->
                             </tbody>
                         </table>
+                    </div>
+                    <div id="expensesMobileCards" class="lg:hidden space-y-3 p-4">
+                        <!-- Injected via JS -->
+                    </div>
+                    <div id="expensesEmpty" class="hidden py-16 text-center">
+                        <i class="fas fa-wallet text-4xl text-nakshatra-dark/15 mb-3"></i>
+                        <p class="text-nakshatra-dark/40 font-playfair">No expenses found</p>
                     </div>
                 </div>
                 <div class="mt-4 bg-white rounded-xl border border-nakshatra-gold/10 p-5 shadow-sm">
@@ -872,7 +868,7 @@
 
             <!-- SETTINGS TAB -->
             <div id="tab-settings" class="tab-content hidden">
-                <div class="max-w-2xl mx-auto bg-white rounded-xl border border-nakshatra-gold/10 p-6 shadow-sm">
+                <div class="max-w-2xl mx-auto bg-white rounded-xl border border-nakshatra-gold/10 p-4 sm:p-6 shadow-sm">
                     <h3 class="font-cinzel text-nakshatra-maroon font-bold text-lg mb-6">Business Settings</h3>
                     <div class="space-y-4">
                         <div>
@@ -898,17 +894,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Mobile Sticky Actions -->
-            <div class="mobile-sticky-actions lg:hidden">
-                <button onclick="refreshData()"
-                    class="flex-1 flex items-center justify-center gap-2 py-3 bg-nakshatra-cream border border-nakshatra-gold/30 rounded-xl text-nakshatra-maroon font-semibold text-sm">
-                    <i class="fas fa-sync-alt"></i> Refresh
-                </button>
-                <button onclick="exportOrders()"
-                    class="flex-1 flex items-center justify-center gap-2 py-3 bg-nakshatra-maroon rounded-xl text-white font-semibold text-sm">
-                    <i class="fas fa-download"></i> Export
-                </button>
             </div>
         </main>
     </div>
@@ -950,7 +935,7 @@
                     <input type="text" id="prodName"
                         class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
                 </div>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Category</label>
                         <select id="prodCategory"
@@ -983,7 +968,7 @@
                     <textarea id="prodDesc" rows="2"
                         class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon resize-none"></textarea>
                 </div>
-                <div class="pt-4 border-t border-nakshatra-gold/10 flex gap-3">
+                <div class="pt-4 border-t border-nakshatra-gold/10 flex flex-col sm:flex-row gap-3">
                     <button onclick="saveProduct()"
                         class="flex-1 bg-nakshatra-green text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-nakshatra-green/90 transition-colors">
                         <i class="fas fa-save mr-2"></i>Save Product
@@ -1013,7 +998,7 @@
                     <input type="text" id="expDesc" placeholder="e.g., Raw mangoes for pickle"
                         class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
                 </div>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Amount (₹)</label>
                         <input type="number" id="expAmount"
@@ -1037,7 +1022,7 @@
                     <input type="date" id="expDate"
                         class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
                 </div>
-                <div class="pt-4 border-t border-nakshatra-gold/10 flex gap-3">
+                <div class="pt-4 border-t border-nakshatra-gold/10 flex flex-col sm:flex-row gap-3">
                     <button onclick="saveExpense()"
                         class="flex-1 bg-nakshatra-orange text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-nakshatra-orange/90 transition-colors">
                         <i class="fas fa-save mr-2"></i>Save Expense
@@ -1318,21 +1303,23 @@
                 const itemCount = Array.isArray(order.items) ? order.items.reduce((s, i) => s + (i.qty || 0), 0) : 0;
                 const statusColor = getStatusColor(order.status);
                 return `
-                    <div class="p-4 flex items-center gap-4 table-row cursor-pointer" onclick="openOrderDetail('${order.id}')">
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center gap-2">
-                                <span class="font-semibold text-sm text-nakshatra-dark">${order.order_number || order.id.slice(0, 8)}</span>
-                                <span class="text-xs px-2 py-0.5 rounded-full ${statusColor.bg} ${statusColor.text}">${order.status}</span>
+                    <div class="recent-order-item p-4 table-row cursor-pointer" onclick="openOrderDetail('${order.id}')">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap mb-1">
+                                    <span class="font-semibold text-sm text-nakshatra-dark">${order.order_number || order.id.slice(0, 8)}</span>
+                                    <span class="text-xs px-2 py-0.5 rounded-full ${statusColor.bg} ${statusColor.text} capitalize">${order.status}</span>
+                                </div>
+                                <p class="text-sm text-nakshatra-dark/70 truncate">${order.customer_name}</p>
+                                <p class="text-xs text-nakshatra-dark/40 mt-0.5">${itemCount} item${itemCount === 1 ? '' : 's'} • ${formatDate(order.created_at)}</p>
                             </div>
-                            <p class="text-xs text-nakshatra-dark/50 mt-0.5 truncate">${order.customer_name} • ${itemCount} items</p>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <span class="font-bold text-sm text-nakshatra-maroon whitespace-nowrap">₹${order.total}</span>
+                                <button onclick="event.stopPropagation(); openStatusModal('${order.id}')" class="p-2 hover:bg-nakshatra-gold/10 rounded-lg transition-colors" title="Update Status">
+                                    <i class="fas fa-edit text-nakshatra-gold text-sm"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="font-bold text-sm text-nakshatra-maroon">₹${order.total}</p>
-                            <p class="text-xs text-nakshatra-dark/40">${formatDate(order.created_at)}</p>
-                        </div>
-                        <button onclick="event.stopPropagation(); openStatusModal('${order.id}')" class="p-2 hover:bg-nakshatra-gold/10 rounded-lg transition-colors" title="Update Status">
-                            <i class="fas fa-edit text-nakshatra-gold text-sm"></i>
-                        </button>
                     </div>
                 `;
             }).join('');
@@ -1711,7 +1698,7 @@
                         </div>
                     </div>
 
-                    <div class="flex gap-3">
+                    <div class="flex flex-col sm:flex-row gap-3">
                         <button onclick="openStatusModal('${order.id}')" class="flex-1 bg-nakshatra-maroon text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-nakshatra-maroon/90 transition-colors">
                             <i class="fas fa-edit mr-2"></i>Update Status
                         </button>
@@ -1865,12 +1852,23 @@
         // ===== PRODUCTS =====
         function renderProducts() {
             const tbody = document.getElementById('productsTableBody');
+            const mobileContainer = document.getElementById('productsMobileCards');
+            const empty = document.getElementById('productsEmpty');
             const search = document.getElementById('productSearch').value.toLowerCase();
 
             let filtered = allProducts.filter(p => {
                 return !search || (p.name && p.name.toLowerCase().includes(search)) || (p.category && p.category.toLowerCase().includes(search));
             });
 
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                mobileContainer.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+
+            // Desktop table rows
             tbody.innerHTML = filtered.map(product => {
                 const prices = product.prices || {};
                 const priceStr = Object.entries(prices).map(([k, v]) => `${k}: ₹${v}`).join(', ');
@@ -1911,6 +1909,53 @@
                         </td>
                     </tr>
                 `;
+            }).join('');
+
+            // Mobile cards — full info, neatly laid out
+            mobileContainer.innerHTML = filtered.map(product => {
+                const prices = product.prices || {};
+                const priceEntries = Object.entries(prices);
+                const statusPill = product.active
+                    ? '<span class="text-xs px-2.5 py-1 rounded-full bg-nakshatra-green/10 text-nakshatra-green font-medium">Active</span>'
+                    : '<span class="text-xs px-2.5 py-1 rounded-full bg-nakshatra-dark/10 text-nakshatra-dark/50 font-medium">Inactive</span>';
+
+                return `
+            <div class="mobile-card product-mobile-card">
+                <div class="flex items-start gap-3 mb-3">
+                    <img src="${product.image || 'https://via.placeholder.com/64'}" alt="${product.name}" class="w-16 h-16 rounded-lg object-cover shrink-0 border border-nakshatra-gold/10">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-start justify-between gap-2">
+                            <p class="font-bold text-nakshatra-dark text-base leading-snug">${product.name}</p>
+                            ${statusPill}
+                        </div>
+                        <span class="inline-block mt-1 text-xs px-2 py-0.5 rounded-full bg-nakshatra-gold/10 text-nakshatra-maroon font-medium">${product.category}</span>
+                        ${product.description ? `<p class="text-xs text-nakshatra-dark/50 mt-1.5 leading-snug">${product.description}</p>` : ''}
+                    </div>
+                </div>
+
+                ${priceEntries.length ? `
+                <div class="flex flex-wrap gap-2 mb-3">
+                    ${priceEntries.map(([size, price]) => `
+                        <div class="flex items-center gap-1.5 bg-nakshatra-cream/60 rounded-lg px-2.5 py-1.5">
+                            <span class="text-xs text-nakshatra-dark/50 font-medium">${size}</span>
+                            <span class="text-sm font-bold text-nakshatra-maroon">₹${price}</span>
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+
+                <div class="flex items-center gap-2 pt-3 border-t border-nakshatra-gold/10">
+                    <button onclick="editProduct('${product.id}')" class="order-action-btn bg-nakshatra-gold/10 text-nakshatra-gold flex-1" title="Edit">
+                        <i class="fas fa-edit mr-1.5"></i><span class="text-xs font-semibold">Edit</span>
+                    </button>
+                    <button onclick="toggleProductActive('${product.id}')" class="order-action-btn bg-nakshatra-green/10 text-nakshatra-green flex-1" title="Toggle Active">
+                        <i class="fas ${product.active ? 'fa-eye-slash' : 'fa-eye'} mr-1.5"></i><span class="text-xs font-semibold">${product.active ? 'Deactivate' : 'Activate'}</span>
+                    </button>
+                    <button onclick="deleteProduct('${product.id}')" class="order-action-btn bg-status-cancelled/10 text-status-cancelled" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
             }).join('');
         }
 
@@ -2031,33 +2076,61 @@
         // ===== EXPENSES =====
         function renderExpenses() {
             const tbody = document.getElementById('expensesTableBody');
+            const mobileContainer = document.getElementById('expensesMobileCards');
+            const empty = document.getElementById('expensesEmpty');
             const search = document.getElementById('expenseSearch').value.toLowerCase();
 
             let filtered = allExpenses.filter(e => {
                 return !search || (e.description && e.description.toLowerCase().includes(search)) || (e.category && e.category.toLowerCase().includes(search));
             });
 
-            tbody.innerHTML = filtered.map(expense => `
-                <tr class="expense-row border-b border-nakshatra-gold/5">
-                    <td class="px-4 py-3">
-                        <span class="text-sm text-nakshatra-dark">${new Date(expense.date).toLocaleDateString('en-IN')}</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <p class="font-medium text-sm text-nakshatra-dark">${expense.description}</p>
-                    </td>
-                    <td class="px-4 py-3">
-                        <span class="text-xs px-2 py-0.5 rounded-full bg-nakshatra-orange/10 text-nakshatra-orange font-medium">${expense.category}</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <span class="font-bold text-sm text-nakshatra-maroon">₹${expense.amount}</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <button onclick="deleteExpense('${expense.id}')" class="p-1.5 hover:bg-status-cancelled/10 rounded-lg transition-colors" title="Delete">
-                            <i class="fas fa-trash text-status-cancelled text-sm"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                mobileContainer.innerHTML = '';
+                empty.classList.remove('hidden');
+            } else {
+                empty.classList.add('hidden');
+
+                tbody.innerHTML = filtered.map(expense => `
+                    <tr class="expense-row border-b border-nakshatra-gold/5">
+                        <td class="px-4 py-3">
+                            <span class="text-sm text-nakshatra-dark">${new Date(expense.date).toLocaleDateString('en-IN')}</span>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p class="font-medium text-sm text-nakshatra-dark">${expense.description}</p>
+                        </td>
+                        <td class="px-4 py-3">
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-nakshatra-orange/10 text-nakshatra-orange font-medium">${expense.category}</span>
+                        </td>
+                        <td class="px-4 py-3">
+                            <span class="font-bold text-sm text-nakshatra-maroon">₹${expense.amount}</span>
+                        </td>
+                        <td class="px-4 py-3">
+                            <button onclick="deleteExpense('${expense.id}')" class="p-1.5 hover:bg-status-cancelled/10 rounded-lg transition-colors" title="Delete">
+                                <i class="fas fa-trash text-status-cancelled text-sm"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                mobileContainer.innerHTML = filtered.map(expense => `
+                    <div class="mobile-card">
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <div class="flex-1 min-w-0">
+                                <p class="font-semibold text-nakshatra-dark text-base leading-snug">${expense.description}</p>
+                                <p class="text-xs text-nakshatra-dark/40 mt-0.5">${new Date(expense.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                            </div>
+                            <span class="font-bold text-nakshatra-maroon text-lg shrink-0">₹${expense.amount}</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-nakshatra-gold/10">
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-nakshatra-orange/10 text-nakshatra-orange font-medium">${expense.category}</span>
+                            <button onclick="deleteExpense('${expense.id}')" class="order-action-btn bg-status-cancelled/10 text-status-cancelled" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
 
             // Update expense summary
             const today = new Date();
