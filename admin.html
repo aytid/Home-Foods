@@ -935,28 +935,25 @@
                     <input type="text" id="prodName"
                         class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Category</label>
-                        <select id="prodCategory"
-                            class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
-                            <option value="Veg Pickles">Veg Pickles</option>
-                            <option value="Non-Veg">Non-Veg</option>
-                            <option value="Snacks">Snacks</option>
-                            <option value="Sweets">Sweets</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Cost Price (₹)</label>
-                        <input type="number" id="prodCost"
-                            class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
-                    </div>
+                <div>
+                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Category</label>
+                    <select id="prodCategory"
+                        class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
+                        <option value="Veg Pickles">Veg Pickles</option>
+                        <option value="Non-Veg">Non-Veg</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Sweets">Sweets</option>
+                    </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Prices (JSON format: {"250g":
-                        120, "500g": 220})</label>
-                    <textarea id="prodPrices" rows="2" placeholder='{"250g": 120, "500g": 220, "1kg": 400}'
-                        class="w-full px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon font-mono"></textarea>
+                    <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Sizes & Prices</label>
+                    <div id="prodPriceRows" class="space-y-2">
+                        <!-- Rows injected via JS -->
+                    </div>
+                    <button type="button" onclick="addPriceRow()"
+                        class="mt-2 flex items-center gap-2 text-sm text-nakshatra-green font-medium hover:text-nakshatra-green/80 transition-colors">
+                        <i class="fas fa-plus-circle"></i> Add another size
+                    </button>
                 </div>
                 <div>
                     <label class="block text-sm font-semibold text-nakshatra-dark mb-1">Image URL</label>
@@ -1968,11 +1965,64 @@
             document.getElementById('productModalTitle').textContent = 'Add Product';
             document.getElementById('prodName').value = '';
             document.getElementById('prodCategory').value = 'Veg Pickles';
-            document.getElementById('prodCost').value = '';
-            document.getElementById('prodPrices').value = '';
             document.getElementById('prodImage').value = '';
             document.getElementById('prodDesc').value = '';
+            renderPriceRows({}); // one blank row by default
             openModal('productModal');
+        }
+
+        // ===== PRICE ROWS (Sizes & Prices UI) =====
+        function renderPriceRows(prices) {
+            const container = document.getElementById('prodPriceRows');
+            const entries = Object.entries(prices || {});
+            if (entries.length === 0) entries.push(['', '']);
+            container.innerHTML = entries.map(([size, price]) => priceRowHtml(size, price)).join('');
+        }
+
+        function priceRowHtml(size = '', price = '') {
+            return `
+        <div class="flex items-center gap-2 price-row">
+            <input type="text" placeholder="e.g. 250g" value="${size}"
+                class="price-size-input flex-1 px-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
+            <div class="relative w-32">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-nakshatra-dark/40 text-sm">₹</span>
+                <input type="number" placeholder="0" value="${price}" min="0"
+                    class="price-amount-input w-full pl-7 pr-3 py-2 rounded-lg border border-nakshatra-gold/20 bg-nakshatra-cream/30 text-sm outline-none focus:border-nakshatra-maroon">
+            </div>
+            <button type="button" onclick="removePriceRow(this)"
+                class="p-2 text-nakshatra-dark/30 hover:text-status-cancelled transition-colors" title="Remove">
+                <i class="fas fa-times-circle"></i>
+            </button>
+        </div>
+    `;
+        }
+
+        function addPriceRow() {
+            document.getElementById('prodPriceRows').insertAdjacentHTML('beforeend', priceRowHtml());
+        }
+
+        function removePriceRow(btn) {
+            const rows = document.querySelectorAll('#prodPriceRows .price-row');
+            if (rows.length <= 1) {
+                // Keep at least one row, just clear it
+                const row = btn.closest('.price-row');
+                row.querySelector('.price-size-input').value = '';
+                row.querySelector('.price-amount-input').value = '';
+                return;
+            }
+            btn.closest('.price-row').remove();
+        }
+
+        function collectPricesFromRows() {
+            const prices = {};
+            document.querySelectorAll('#prodPriceRows .price-row').forEach(row => {
+                const size = row.querySelector('.price-size-input').value.trim();
+                const price = row.querySelector('.price-amount-input').value;
+                if (size && price !== '') {
+                    prices[size] = parseFloat(price);
+                }
+            });
+            return prices;
         }
 
         function editProduct(productId) {
@@ -1982,18 +2032,14 @@
             document.getElementById('productModalTitle').textContent = 'Edit Product';
             document.getElementById('prodName').value = product.name || '';
             document.getElementById('prodCategory').value = product.category || 'Veg Pickles';
-            document.getElementById('prodCost').value = product.cost_price || '';
-            document.getElementById('prodPrices').value = JSON.stringify(product.prices || {}, null, 2);
             document.getElementById('prodImage').value = product.image || '';
             document.getElementById('prodDesc').value = product.description || '';
+            renderPriceRows(product.prices || {});
             openModal('productModal');
         }
-
         async function saveProduct() {
             const name = document.getElementById('prodName').value.trim();
             const category = document.getElementById('prodCategory').value;
-            const costPrice = parseFloat(document.getElementById('prodCost').value) || 0;
-            const pricesStr = document.getElementById('prodPrices').value.trim();
             const image = document.getElementById('prodImage').value.trim();
             const description = document.getElementById('prodDesc').value.trim();
 
@@ -2002,16 +2048,14 @@
                 return;
             }
 
-            let prices = {};
-            try {
-                prices = JSON.parse(pricesStr);
-            } catch (e) {
-                showToast('Error', 'Invalid prices JSON format');
+            const prices = collectPricesFromRows();
+            if (Object.keys(prices).length === 0) {
+                showToast('Error', 'Add at least one size and price');
                 return;
             }
 
             const productData = {
-                name, category, prices, cost_price: costPrice, image, description,
+                name, category, prices, image, description,
                 active: true
             };
 
@@ -2020,7 +2064,7 @@
                 const result = await supabaseClient.from('products').update(productData).eq('id', editingProductId);
                 error = result.error;
             } else {
-                productData.id = name.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                productData.id = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                 const result = await supabaseClient.from('products').insert(productData);
                 error = result.error;
             }
@@ -2054,7 +2098,6 @@
             await loadProducts();
             renderProducts();
         }
-
         async function deleteProduct(productId) {
             if (!confirm('Are you sure? This will permanently delete the product.')) return;
 
