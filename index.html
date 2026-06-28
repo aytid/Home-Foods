@@ -776,7 +776,7 @@
                     <div
                         class="product-card bg-white rounded-xl overflow-hidden border-2 border-nakshatra-gold/30 shadow-xl">
                         <div class="relative h-56 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop"
+                            <img src="https://drive.google.com/file/d/1GG4IIr4dhA6OqWCrFm3H1pHqtDjYPDII/view?usp=drivesdk"
                                 alt="Sarvapindi"
                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                             <div class="img-overlay absolute inset-0"></div>
@@ -1321,103 +1321,6 @@
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
-
-        // ===== RENDER PRODUCTS =====
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            if (!grid) return;
-
-            let filtered = currentCategory === 'all'
-                ? products
-                : products.filter(p => p.category === currentCategory);
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-16">
-                        <i class="fas fa-basket-shopping text-4xl text-nakshatra-dark/20 mb-4"></i>
-                        <p class="text-nakshatra-dark/50 font-playfair">No products available in this category.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(product => {
-                if (!product.prices || typeof product.prices !== 'object') return '';
-                const sizes = Object.keys(product.prices);
-                if (sizes.length === 0) return '';
-                const defaultSize = sizes[0];
-                if (!selectedSizes[product.id]) selectedSizes[product.id] = defaultSize;
-                const currentSize = selectedSizes[product.id];
-                const price = product.prices[currentSize];
-
-                const sizeButtons = sizes.map(size => `
-                    <button onclick="selectSize('${product.id}', '${size}', event)" 
-                        class="px-2 py-1 text-xs rounded-md border transition-all ${currentSize === size ? 'bg-nakshatra-maroon text-white border-nakshatra-maroon' : 'bg-white text-nakshatra-dark/70 border-nakshatra-gold/30 hover:border-nakshatra-maroon'}">
-                        ${size}
-                    </button>
-                `).join('');
-
-                const categoryColors = {
-                    veg: 'bg-nakshatra-green/10 text-nakshatra-green border-nakshatra-green/20',
-                    nonveg: 'bg-nakshatra-maroon/10 text-nakshatra-maroon border-nakshatra-maroon/20',
-                    snacks: 'bg-nakshatra-orange/10 text-nakshatra-orange border-nakshatra-orange/20',
-                    sweets: 'bg-purple-100 text-purple-700 border-purple-200'
-                };
-
-                const categoryLabels = { veg: 'Veg', nonveg: 'Non-Veg', snacks: 'Snack', sweets: 'Sweet' };
-
-                // Check if item is already in cart
-                const inCart = cart.filter(item => item.id === product.id);
-                const cartQty = inCart.reduce((sum, item) => sum + item.qty, 0);
-                const cartBadge = cartQty > 0 ? `<div class="absolute top-3 left-3 bg-nakshatra-orange text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">${cartQty} in basket</div>` : '';
-
-                return `
-                    <div class="product-card bg-white rounded-xl overflow-hidden border border-nakshatra-gold/10 shadow-md reveal">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="${product.image || 'https://via.placeholder.com/400?text=No+Image'}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                            <div class="img-overlay absolute inset-0"></div>
-                            ${cartBadge}
-                            <div class="absolute top-3 right-3">
-                                <span class="text-xs px-2 py-1 rounded-full border ${categoryColors[product.category] || 'bg-gray-100 text-gray-600 border-gray-200'}">
-                                    ${categoryLabels[product.category] || product.category}
-                                </span>
-                            </div>
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <h3 class="font-playfair font-bold text-white text-lg drop-shadow-lg">${product.name}</h3>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <p class="text-nakshatra-dark/50 text-xs mb-3 line-clamp-2">${product.description || ''}</p>
-
-                            <div class="flex gap-1 mb-3 flex-wrap">
-                                ${sizeButtons}
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <span class="text-2xl font-bold text-nakshatra-maroon">₹${price}</span>
-                                    <span class="text-xs text-nakshatra-dark/40 ml-1">/${currentSize}</span>
-                                </div>
-                                <button onclick="addToCart('${product.id}', event)" 
-                                    class="bg-nakshatra-maroon hover:bg-nakshatra-maroon/90 text-white px-4 py-2 rounded-lg text-sm font-semibold btn-shine transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
-                                    <i class="fas fa-plus"></i>
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            setTimeout(() => {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) entry.target.classList.add('active');
-                    });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.product-card.reveal').forEach(el => observer.observe(el));
-            }, 100);
-        }
         // ===== RENDER PRODUCTS =====
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
@@ -1695,7 +1598,7 @@
                 size: '1 Piece',
                 price: 25,
                 qty: 1,
-                image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop'
+                image: 'https://drive.google.com/file/d/1GG4IIr4dhA6OqWCrFm3H1pHqtDjYPDII/view?usp=drivesdk'
             };
 
             // Normal add - no minimum quantity restriction
